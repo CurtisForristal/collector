@@ -7,29 +7,29 @@
 ### Collection Page
 * Display list of all added games
   * Prob should "load more" after 50 or so
-### Search collection
-### Sort
-#### Alphebetical
-#### Date added
-#### Date released
-#### Display all from only checked platforms
+* Search collection
+* Sort
+ * Alphebetical
+ * Date added
+ * Date released
+ * Display all from only checked platforms
 
 
-## Show one game
-### Title
-### Release Year
-### Box Art
-### Description
-### Plaform(s) owned on
+### Show one game
+* Title
+* Release Year
+* Box Art
+* Description
+* Plaform(s) owned on
 
 
-## Add game
+### Add game
 
 
-## Register
+### Register
 
 
-## Login
+### Login
 
 
-## Logout
+### Logout
