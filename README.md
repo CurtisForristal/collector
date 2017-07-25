@@ -1,15 +1,22 @@
 # Collector
 
 ### Landing Page
-* Show Collection
-
+* If not logged in
+  * Login
+  * Register
+  * Search users
+  * Show list of all users
+* If logged in
+  * Show your collection
+  * Search users
+  * Show list of all users
 
 ### Collection Page
 * Display list of all added games
   	* Prob should "load more" after 50 or so
 * Search collection
 * Sort
-	* Alphebetical
+	* Alphabetical
  	* Date added
  	* Date released
  	* Display all from only checked platforms
@@ -20,7 +27,7 @@
 * Release Year
 * Box Art
 * Description
-* Plaform(s) owned on
+* Platform(s) owned on
 
 
 ### Add game
@@ -33,3 +40,6 @@
 
 
 ### Logout
+
+
+### User Profile

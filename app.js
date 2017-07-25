@@ -2,16 +2,16 @@
 // REQUIRE PACKAGES
 // ================
 var passportLocalMongoose 	= require("passport-local-mongoose"),
-	methodOverride 			= require("method-override"),
-	LocalStrategy 			= require("passport-local"),
-	session 				= require("express-session"),
-	MongoStore              = require("connect-mongo")(session),
-	bodyParser 				= require("body-parser"),
-	flash 					= require("connect-flash"),
-	mongoose 				= require("mongoose"),
-	passport 				= require("passport"),
-	express 				= require("express"),
-	request 				= require("request");
+		methodOverride 					= require("method-override"),
+		LocalStrategy 					= require("passport-local"),
+		session 								= require("express-session"),
+		MongoStore              = require("connect-mongo")(session),
+		bodyParser 							= require("body-parser"),
+		flash 									= require("connect-flash"),
+		mongoose 								= require("mongoose"),
+		passport 								= require("passport"),
+		express 								= require("express"),
+		request 								= require("request");
 
 
 // ==============
@@ -40,15 +40,14 @@ app.use(methodOverride("_method"));
 // For flash messages
 app.use(flash());
 
-
-// ==============   
+// ==============
 // DATABASE SETUP
 // ==============
 mongoose.Promise = global.Promise
 mongoose.connect("mongodb://localhost/collector", {useMongoClient: true});
 
 
-// ==============   
+// ==============
 // PASSPORT SETUP
 // ==============
 // app.use(require("express-session") ({
@@ -77,11 +76,9 @@ mongoose.connect("mongodb://localhost/collector", {useMongoClient: true});
 app.use(gamesRoutes);
 
 
-// ==================   
+// ==================
 // START LOCAL SERVER
 // ==================
 app.listen(27017, function() {
 	console.log("Server Started");
 });
-
-
