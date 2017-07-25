@@ -31,7 +31,7 @@ var Game = require("./models/game");
 // =========
 var app = express();
 app.set("view engine", "ejs");
-// Serve public dir
+// Serve public dir for css files
 app.use(express.static("public"));
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -77,9 +77,9 @@ mongoose.connect("mongodb://localhost/collector", {useMongoClient: true});
 app.use(gamesRoutes);
 
 
-// ============   
-// START SERVER
-// ============
+// ==================   
+// START LOCAL SERVER
+// ==================
 app.listen(27017, function() {
 	console.log("Server Started");
 });

@@ -10,6 +10,9 @@ var Game = require("../models/game");
 
 
 
+// ======
+// ROUTES 
+// ======
 
 // ROOT
 // Render the landing page
@@ -22,7 +25,13 @@ router.get("/", function (req, res) {
 // Pull all of the users games from the db
 // Render a list of their games
 router.get("/games", function (req, res) {
-	res.render("games/index");
+	Game.find({}, function (err, games) {
+		if (err) {
+			console.log("ERROR - GAMES INDEX ROUTE");
+		} else {
+			res.render("games/index", {games: games});			
+		}
+	});
 });
 
 
@@ -47,6 +56,11 @@ router.post("/games", function (req, res) {
 	});
 });
 
+// SHOW
+// Render all info about the selected game
+router.get("/games/:id", function (req, res) {
+	res.send("SHOW PAGE");
+});
 
 
 
