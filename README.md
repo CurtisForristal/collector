@@ -6,13 +6,13 @@
 
 ### Collection Page
 * Display list of all added games
-  * Prob should "load more" after 50 or so
+  	* Prob should "load more" after 50 or so
 * Search collection
 * Sort
- * Alphebetical
- * Date added
- * Date released
- * Display all from only checked platforms
+	* Alphebetical
+ 	* Date added
+ 	* Date released
+ 	* Display all from only checked platforms
 
 
 ### Show one game
