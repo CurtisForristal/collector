@@ -4,6 +4,7 @@
 
 var express = require("express");
 var router = express.Router({mergeParams: true});
+var request = require("request");
 
 // INCLUDE MODELS
 var Game = require("../models/game");
@@ -36,10 +37,36 @@ router.get("/games", function (req, res) {
 
 
 // NEW
-// Display form to add a new game to their list
+// Use the GiantBomb API to search for video games in their database
+// Render the results on games/new
 router.get("/games/new", function (req, res) {
-	res.render("games/new");
+	// Receive search from the form on games/index
+	var query = req.query.search;
+	// My API Key is stored in environment variable GIANTBOMBAPIKEY
+	var key = process.env.GIANTBOMBAPIKEY;
+	// Create url from the giantbomb search query url, my API key, and the query variable
+	var url = "http://www.giantbomb.com/api/search/?api_key=" + key + "&format=json&query=" + query + "&resources=game";
+
+	// Giant Bomb API requires a unique User-Agent HTTP header
+	var options = {
+		url: url,
+		headers: {
+			"User-Agent": "CurtisForristalTestProject"
+		}
+	};
+
+	// User request to parse the data
+	request(options, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			// Send the data and render the results on games/new
+			res.render("games/new", {data: data});
+		} else {
+			console.log(response.statusCode);
+		}
+	});
 });
+
 
 
 // CREATE
