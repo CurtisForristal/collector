@@ -1,0 +1,9 @@
+<h1>SHOW PAGE</h1>
+
+<a href="/games/<%= game._id %>/edit">Edit</a>
+
+<form action="/games/<%= game._id %>?_method=DELETE" method="POST">
+  <button>Delete</button>
+</form>
+
+<h3><%= game.title %></h3>

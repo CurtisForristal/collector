@@ -10,7 +10,8 @@
 
 <!-- Loop through all games and display the title for each -->
 <% games.forEach(function(game) { %>
-	<h4><%= game.title %></h4>
+	<a href="/games/<%= game._id %>"><%= game.title %></a>
+	<br>
 <% }); %>
 
 
