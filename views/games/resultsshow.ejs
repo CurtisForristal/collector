@@ -1,0 +1,7 @@
+<h1>RESULTS SHOW</h1>
+
+<form action="/games" method="POST">
+  <%= data.results.name %>
+  <%# <input type="checkbox" >%>
+  <button name="game[title]" value="<%= data.results.name %>">Add Game To Your Collection</button>
+</form>

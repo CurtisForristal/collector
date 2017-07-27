@@ -1,0 +1,29 @@
+<!-- INCLUDE HEADER -->
+<% include ../partials/header %>
+
+
+<h1>ADD A GAME TO YOUR COLLECTION</h1>
+
+<%# Disaply search results from the Giant Bomb API %>
+<% if(data.results.length > 0) { %>
+	<ul>
+			<% data.results.forEach (function(game) { %>
+				<%# Parse the property api_detail_url for the Resource ID at the end of it %>
+				<% var resouceId = game.api_detail_url.substring(35, game.api_detail_url.length); %>
+
+				<li>
+						<a href="/results/<%= resouceId %>"><strong><%= game.name %></strong></a>
+						<%#  Cut the original_release_date down to just the year only %>
+						<%= game.original_release_date.substring(0, 4) %>
+				</li>
+		<% }); %>
+	</ul>
+<% } else { %>
+		<h4>No results found, please try a different title</h4>
+<% } %>
+
+
+
+
+<!-- INCLUDE FOOTER -->
+<% include ../partials/footer %>

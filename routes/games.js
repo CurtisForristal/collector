@@ -36,10 +36,10 @@ router.get("/games", function (req, res) {
 });
 
 
-// NEW
+// RESULTS
 // Use the GiantBomb API to search for video games in their database
 // Render the results on games/new
-router.get("/games/new", function (req, res) {
+router.get("/games/results", function (req, res) {
 	// Receive search from the form on games/index
 	var query = req.query.search;
 	// My API Key is stored in environment variable GIANTBOMBAPIKEY
@@ -60,7 +60,38 @@ router.get("/games/new", function (req, res) {
 		if (!error && response.statusCode == 200) {
 			var data = JSON.parse(body);
 			// Send the data and render the results on games/new
-			res.render("games/new", {data: data});
+			eval(require("locus"));
+			res.render("games/results", {data: data});
+		} else {
+			console.log(response.statusCode);
+		}
+	});
+});
+
+
+// RESULTS SHOW
+// Receive the game ID from the link in results.ejs
+// Find that game in the Giant Bomb database
+// Render a show page for that game with a link to add it to your collection
+router.get("/results/:id", function (req, res) {
+	var id = req.params.id;
+	var key = process.env.GIANTBOMBAPIKEY;
+	var url = "http://www.giantbomb.com/api/game/" + id + "/?api_key=" + key + "&format=json";
+
+	// Giant Bomb API requires a unique User-Agent HTTP header
+	var options = {
+		url: url,
+		headers: {
+			"User-Agent": "CurtisForristalTestProject"
+		}
+	};
+
+	// User request to parse the data
+	request(options, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			var data = JSON.parse(body);
+			// Send the data and render the results on games/new
+			res.render("games/resultsshow", {data: data, resouceId: id});
 		} else {
 			console.log(response.statusCode);
 		}
