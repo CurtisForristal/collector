@@ -72,7 +72,7 @@ router.get("/results/:id", function (req, res) {
 	// Using a Promise
 	// After the request completes, then runs the callback using the parsed data from makeApiRequest
 	makeApiRequest(url).then(function (data) {
-		res.render("games/resultsshow", {data: data});
+		res.render("games/resultsShow", {data: data});
 	});
 });
 
@@ -152,8 +152,8 @@ router.delete("/games/:id", function (req, res) {
 
 // ==========================================================================
 
-// Function:
-// Use Request to send API requests to giantbomb.com
+// Function: makeApiRequest
+// Uses Request to send API requests to giantbomb.com
 var makeApiRequest = function (url) {
 	// Return a promise
 	return new Promise(function(resolve, reject) {

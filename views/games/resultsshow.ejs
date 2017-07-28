@@ -2,6 +2,16 @@
 
 <form action="/games" method="POST">
   <%= data.results.name %>
-  <%# <input type="checkbox" >%>
-  <button name="game[title]" value="<%= data.results.name %>">Add Game To Your Collection</button>
+  <br>
+  <%= data.results.original_release_date.substring(0, 4) %>
+  <br>
+  <br>
+  <% data.results.platforms.forEach (function (platform) { %>
+    <input type="checkbox"><%= platform.name %>
+    <br>
+  <% }); %>
+
+
+  <br>
+  <button name="game[title]" value="<%= data.results.name %>">Add Game(s) To Your Collection</button>
 </form>
