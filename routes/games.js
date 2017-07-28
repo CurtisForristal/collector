@@ -82,7 +82,27 @@ router.get("/results/:id", function (req, res) {
 // Add the new game to their list
 // Redirect to INDEX
 router.post("/games", function (req, res) {
-	Game.create(req.body.game, function (err, newGame) {
+	var title = req.body.title;
+	var date = req.body.date;
+	var platforms = [];
+
+	if (Array.isArray(req.body.platforms)) {
+		req.body.platforms.forEach (function (platform) {
+			platforms.push(platform);
+		});
+	} else {
+		platforms.push(req.body.platforms);
+	}
+
+
+	var newGame = {
+		title: title,
+		date: date,
+		platforms: platforms
+	};
+
+
+	Game.create(newGame, function (err, newlyCreated) {
 		if (err) {
 			console.log("ERROR - GAMES CREATE ROUTE");
 		} else {

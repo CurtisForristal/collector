@@ -7,7 +7,8 @@ var mongoose = require("mongoose");
 
 var gameSchema = new mongoose.Schema({
 	title: String,
-	resouceId: String
+	date: String,
+	platforms: [String]
 });
 
 var Game = mongoose.model("Game", gameSchema);
