@@ -1,3 +1,7 @@
+<!-- INCLUDE HEADER -->
+<% include ../partials/header %>
+
+
 <h1>RESULTS SHOW</h1>
 
 <form action="/games" method="POST">
@@ -12,8 +16,9 @@
   </div>
 
   <br>
+  <h4><strong>Select A Platform</strong></h4>
   <% data.results.platforms.forEach (function (platform) { %>
-    <div class="">
+    <div>
       <input type="checkbox" name="platforms" value="<%= platform.name %>">
       <label><%= platform.name %></label>
     </div>
@@ -21,5 +26,21 @@
 
 
   <br>
-  <button type="submit" name="game" value="<%= data.results.name %>">Add Game(s) To Your Collection</button>
+  <button type="submit" name="game" value="<%= data.results.name %>" disabled>
+    Add Game(s) To Your Collection</button>
 </form>
+
+<%# Use Jquery to check if a checkbox is selected. %>
+<%# If any boxes are selected, enable the submit button %>
+<script>
+  var checkboxes = $("input[type='checkbox']"),
+      submitButt = $("button[type='submit']");
+
+  checkboxes.click(function() {
+      submitButt.attr("disabled", !checkboxes.is(":checked"));
+  });
+</script>
+
+
+<!-- INCLUDE FOOTER -->
+<% include ../partials/footer %>
