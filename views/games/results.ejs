@@ -14,7 +14,11 @@
 				<li>
 						<a href="/results/<%= resouceId %>"><strong><%= game.name %></strong></a>
 						<%#  Cut the original_release_date down to just the year only %>
-						<%= game.original_release_date.substring(0, 4) %>
+						<% if (game.original_release_date) { %>
+							<%= game.original_release_date.substring(0, 4) %>
+						<% } else { %>
+							N/A
+						<% } %>
 				</li>
 		<% }); %>
 	</ul>

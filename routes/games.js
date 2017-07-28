@@ -9,6 +9,12 @@ var request = require("request");
 // INCLUDE MODELS
 var Game = require("../models/game");
 
+// CONSTANTS
+// My API Key is stored in environment variable GIANTBOMBAPIKEY
+var key = process.env.GIANTBOMBAPIKEY;
+
+
+// ==========================================================================
 
 
 // ======
@@ -42,29 +48,14 @@ router.get("/games", function (req, res) {
 router.get("/games/results", function (req, res) {
 	// Receive search from the form on games/index
 	var query = req.query.search;
-	// My API Key is stored in environment variable GIANTBOMBAPIKEY
-	var key = process.env.GIANTBOMBAPIKEY;
 	// Create url from the giantbomb search query url, my API key, and the query variable
 	var url = "http://www.giantbomb.com/api/search/?api_key=" + key + "&format=json&query=" + query + "&resources=game";
 
-	// Giant Bomb API requires a unique User-Agent HTTP header
-	var options = {
-		url: url,
-		headers: {
-			"User-Agent": "CurtisForristalTestProject"
-		}
-	};
-
-	// User request to parse the data
-	request(options, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			var data = JSON.parse(body);
-			// Send the data and render the results on games/new
-			eval(require("locus"));
-			res.render("games/results", {data: data});
-		} else {
-			console.log(response.statusCode);
-		}
+	// Make the API requst on Giant Bomb
+	// Using a Promise
+	// After the request completes, then runs the callback using the parsed data from makeApiRequest
+	makeApiRequest(url).then(function(data) {
+		res.render("games/results", {data: data});
 	});
 });
 
@@ -75,29 +66,15 @@ router.get("/games/results", function (req, res) {
 // Render a show page for that game with a link to add it to your collection
 router.get("/results/:id", function (req, res) {
 	var id = req.params.id;
-	var key = process.env.GIANTBOMBAPIKEY;
 	var url = "http://www.giantbomb.com/api/game/" + id + "/?api_key=" + key + "&format=json";
 
-	// Giant Bomb API requires a unique User-Agent HTTP header
-	var options = {
-		url: url,
-		headers: {
-			"User-Agent": "CurtisForristalTestProject"
-		}
-	};
-
-	// User request to parse the data
-	request(options, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			var data = JSON.parse(body);
-			// Send the data and render the results on games/new
-			res.render("games/resultsshow", {data: data, resouceId: id});
-		} else {
-			console.log(response.statusCode);
-		}
+	// Make the API requst on Giant Bomb
+	// Using a Promise
+	// After the request completes, then runs the callback using the parsed data from makeApiRequest
+	makeApiRequest(url).then(function (data) {
+		res.render("games/resultsshow", {data: data});
 	});
 });
-
 
 
 // CREATE
@@ -113,6 +90,7 @@ router.post("/games", function (req, res) {
 		}
 	});
 });
+
 
 // SHOW
 // Find the selected game
@@ -170,6 +148,36 @@ router.delete("/games/:id", function (req, res) {
 		}
 	});
 });
+
+
+// ==========================================================================
+
+// Function:
+// Use Request to send API requests to giantbomb.com
+var makeApiRequest = function (url) {
+	// Return a promise
+	return new Promise(function(resolve, reject) {
+		// Giant Bomb API requires a unique User-Agent HTTP header
+		var options = {
+			url: url,
+			headers: {
+				"User-Agent": "CurtisForristalTestProject"
+			}
+		};
+
+		// User request to parse the data
+		request(options, function (error, response, body) {
+			if (!error && response.statusCode == 200) {
+				var data = JSON.parse(body);
+				// Run the callback function now that the body has been parsed
+				resolve(data);
+			} else {
+				reject("ERROR CODE" + response.statusCode);
+			}
+		});
+	});
+}
+
 
 
 // EXPORT
