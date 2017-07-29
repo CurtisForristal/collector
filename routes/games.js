@@ -65,14 +65,14 @@ router.get("/games/results", function (req, res) {
 // Find that game in the Giant Bomb database
 // Render a show page for that game with a link to add it to your collection
 router.get("/results/:id", function (req, res) {
-	var id = req.params.id;
-	var url = "http://www.giantbomb.com/api/game/" + id + "/?api_key=" + key + "&format=json";
+	var resourceId = req.params.id;
+	var url = "http://www.giantbomb.com/api/game/" + resourceId + "/?api_key=" + key + "&format=json";
 
 	// Make the API requst on Giant Bomb
 	// Using a Promise
 	// After the request completes, then runs the callback using the parsed data from makeApiRequest
 	makeApiRequest(url).then(function (data) {
-		res.render("games/resultsShow", {data: data});
+		res.render("games/resultsShow", {data: data, resourceId: resourceId});
 	});
 });
 
@@ -83,6 +83,7 @@ router.get("/results/:id", function (req, res) {
 // Redirect to INDEX
 router.post("/games", function (req, res) {
 	var title = req.body.title;
+	var resourceId = req.body.resourceId;
 	var date = req.body.date;
 	var platforms = [];
 
@@ -97,6 +98,7 @@ router.post("/games", function (req, res) {
 
 	var newGame = {
 		title: title,
+		resourceId: resourceId,
 		date: date,
 		platforms: platforms
 	};
@@ -129,12 +131,19 @@ router.get("/games/:id", function (req, res) {
 // EDIT
 // Receive the id from the edit button in the show view
 // Find the game entry for that id
+// Also, use the store resourceID to find the game on Giant Bomb, to add addition platforms on edit page
 // Render the form to edit that entry
 router.get("/games/:id/edit", function (req, res){
 	Game.findById(req.params.id, function (err, foundGame) {
 		if (err) {
 			console.log ("ERROR - GAMES EDIT ROUTE");
 		} else {
+			// Use resourceID to find game om Giant Bomb
+			
+			
+			
+			
+			
 			res.render("games/edit", {game: foundGame});
 		}
 	});

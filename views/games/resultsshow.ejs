@@ -5,6 +5,8 @@
 <h1>RESULTS SHOW</h1>
 
 <form action="/games" method="POST">
+  <!-- Pass the resourceId through to CREATE  -->
+  <input type="hidden" name="resourceId" value="<%= resourceId %>">
   <div>
     <input type="hidden" name="title" value="<%= data.results.name %>">
     <%= data.results.name %>

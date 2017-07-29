@@ -8,6 +8,7 @@ var mongoose = require("mongoose");
 var gameSchema = new mongoose.Schema({
 	title: String,
 	date: String,
+	resourceId: String,
 	platforms: [String]
 });
 
