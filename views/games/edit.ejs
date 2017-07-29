@@ -7,6 +7,51 @@
 <h4>Currently Owned Plaforms:</h4>
 
 
+<form action="/games/<%= game._id %>?_method=PUT" method="POST">
+
+     <!-- Create empty array.  
+        This array will be used to compare currently owned platforms 
+        to additional platforms in the Giant Bomb db.  -->
+    <% var currentlyOwned = []; %>
+    
+    <% game.platforms.forEach(function (platform) { %>
+        <% currentlyOwned.push(platform); %>
+        <div>
+            <input type="checkbox" name="platforms" value="<%= platform %>" checked>
+            <label><%= platform %></label>
+        </div>
+    <% }); %>
+
+    <h4>Additional Platforms</h4>
+
+    <% data.results.platforms.forEach(function (platform) { %>
+        <!-- Compare platform to those in the currentyOwned array -->
+        <!-- If no match, display platform as a new selection -->
+         <% if (currentlyOwned.indexOf(platform.name) === -1) { %> 
+            <div>
+                <input type="checkbox" name="platforms" value="<%= platform.name %>">
+                <label><%= platform.name %></label>
+            </div>
+         <% } %> 
+    <% }); %>
+
+  <br>
+  <button type="submit">Update Platforms</button>
+
+</form>
+
+
+<%# Use Jquery to check if a checkbox is selected. %>
+<%# If any boxes are selected, enable the submit button %>
+<script>
+  var checkboxes = $("input[type='checkbox']"),
+      submitButt = $("button[type='submit']");
+
+  checkboxes.click(function() {
+      submitButt.attr("disabled", !checkboxes.is(":checked"));
+  });
+</script>
+
 
 
 <!-- INCLUDE FOOTER -->

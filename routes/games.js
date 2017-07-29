@@ -139,12 +139,10 @@ router.get("/games/:id/edit", function (req, res){
 			console.log ("ERROR - GAMES EDIT ROUTE");
 		} else {
 			// Use resourceID to find game om Giant Bomb
-			
-			
-			
-			
-			
-			res.render("games/edit", {game: foundGame});
+			var url = "http://www.giantbomb.com/api/game/" + foundGame.resourceId + "/?api_key=" + key + "&format=json"; 
+			makeApiRequest(url).then(function(data) {
+				res.render("games/edit", {game: foundGame, data: data});
+			});
 		}
 	});
 });
