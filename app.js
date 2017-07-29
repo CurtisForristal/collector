@@ -2,16 +2,16 @@
 // REQUIRE PACKAGES
 // ================
 var passportLocalMongoose 	= require("passport-local-mongoose"),
-		methodOverride 					= require("method-override"),
-		LocalStrategy 					= require("passport-local"),
-		session 								= require("express-session"),
-		MongoStore              = require("connect-mongo")(session),
-		bodyParser 							= require("body-parser"),
-		flash 									= require("connect-flash"),
-		mongoose 								= require("mongoose"),
-		passport 								= require("passport"),
-		express 								= require("express"),
-		request 								= require("request");
+	methodOverride 			= require("method-override"),
+	LocalStrategy 			= require("passport-local"),
+	session 				= require("express-session"),
+	MongoStore              = require("connect-mongo")(session),
+	bodyParser 				= require("body-parser"),
+	flash 					= require("connect-flash"),
+	mongoose 				= require("mongoose"),
+	passport 				= require("passport"),
+	express 				= require("express"),
+	request 				= require("request");
 
 
 // ==============

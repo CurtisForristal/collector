@@ -1,9 +1,29 @@
+<!-- INCLUDE HEADER -->
+<% include ../partials/header %>
+
+
 <h1>SHOW PAGE</h1>
 
-<a href="/games/<%= game._id %>/edit">Edit</a>
+
+<h2><%= game.title %></h2>
+
+<p><%= game.date %></p>
+
+<h4>Owned On:</h4>
+
+<% game.platforms.forEach(function (platform) { %>
+  <p><%= platform %></p>
+<% }); %> 
+
+
+
+<a href="/games/<%= game._id %>/edit">Edit Platforms</a>
 
 <form action="/games/<%= game._id %>?_method=DELETE" method="POST">
   <button>Delete</button>
 </form>
 
-<h3><%= game.title %></h3>
+
+
+<!-- INCLUDE FOOTER -->
+<% include ../partials/footer %>

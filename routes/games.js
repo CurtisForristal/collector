@@ -36,7 +36,7 @@ router.get("/games", function (req, res) {
 		if (err) {
 			console.log("ERROR - GAMES INDEX ROUTE");
 		} else {
-			res.render("games/index", {games: games});
+			res.render("games/index", { games: games });
 		}
 	});
 });
