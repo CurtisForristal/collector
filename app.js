@@ -69,6 +69,16 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+// ==============
+// LOCALS PASSING
+// ==============
+app.use(function (req, res, next) {
+	// Pass user through to all routes
+	res.locals.currentUser = req.user;
+	next();
+});
+
+
 // ======
 // ROUTES
 // ======
