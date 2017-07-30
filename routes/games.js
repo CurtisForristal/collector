@@ -21,7 +21,7 @@ var key = process.env.GIANTBOMBAPIKEY;
 // ----------------
 // By default, INDEX will sort the games by dateAdded before displaying the list
 // sortBy will be changed by the "Sort By" dropdown on the INDEX view
-var sortBy = "date";
+var sortBy = "-dateAdded";
 
 
 // ==========================================================================
@@ -52,18 +52,22 @@ router.get("/games", function (req, res) {
 });
 
 
-// INDEX/SORT - Set the sort order, redirect back to games
+// INDEX/SORT/:SORTBY - Set the sort order, redirect back to games
 router.get("/games/sort/:sortBy", function (req, res) {
 	sortBy = req.params.sortBy;
-	if (sortBy === "titleAccending") {
-		sortBy = "-title";
-	} else if (sortBy === "dateAddedDecending") {
-		sortBy = "-dateAdded";
-	} else if (sortBy == "dateDecending") {
-		sortBy = "-date";
+	// Decide if order needs to be flopped with a -
+	switch (sortBy) {
+		case "titleAccending":
+			sortBy = "-title";
+			break;
+		case "dateAddedDecending":
+			sortBy = "-dateAdded";
+			break;
+		case "dateDecending":
+			sortBy = "-date";
+			break;
 	}
-
-	res.redirect("/games")
+	res.redirect("/games");
 });
 
 

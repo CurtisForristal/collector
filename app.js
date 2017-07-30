@@ -18,12 +18,14 @@ var passportLocalMongoose 	= require("passport-local-mongoose"),
 // REQUIRE ROUTES
 // ==============
 var gamesRoutes = require("./routes/games");
+var indexRoutes = require("./routes/index")
 
 
 // ==============
 // REQUIRE MODELS
 // ==============
 var Game = require("./models/game");
+var User = require("./models/user");
 
 
 // =========
@@ -40,6 +42,7 @@ app.use(methodOverride("_method"));
 // For flash messages
 app.use(flash());
 
+
 // ==============
 // DATABASE SETUP
 // ==============
@@ -50,30 +53,27 @@ mongoose.connect("mongodb://localhost/collector", {useMongoClient: true});
 // ==============
 // PASSPORT SETUP
 // ==============
-// app.use(require("express-session") ({
-// 	secret: "Making another video game collection app is quite unnecessary",
-// 	resave: false,
-// 	saveUninitialized: false
-// 	// store: new MongoStore({
-// 	// 	mongooseConnection: mongoose.connection,
-// 	// 	ttl: 14 * 24 * 60 * 60
-// 	// })
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new LocalStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
-
-
-
-
+app.use(require("express-session") ({
+	secret: "Making another video game collection app is quite unnecessary",
+	resave: false,
+	saveUninitialized: false,
+	store: new MongoStore({
+		mongooseConnection: mongoose.connection,
+		ttl: 14 * 24 * 60 * 60
+	})
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 // ======
 // ROUTES
 // ======
 app.use(gamesRoutes);
+app.use(indexRoutes);
 
 
 // ==================
