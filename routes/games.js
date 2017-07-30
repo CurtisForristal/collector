@@ -6,12 +6,22 @@ var express = require("express");
 var router = express.Router({mergeParams: true});
 var request = require("request");
 
+
 // INCLUDE MODELS
 var Game = require("../models/game");
 
+
 // CONSTANTS
+// ---------
 // My API Key is stored in environment variable GIANTBOMBAPIKEY
 var key = process.env.GIANTBOMBAPIKEY;
+
+
+// GLOBAL VARIABLES
+// ----------------
+// By default, INDEX will sort the games by dateAdded before displaying the list
+// sortBy will be changed by the "Sort By" dropdown on the INDEX view
+var sortBy = "date";
 
 
 // ==========================================================================
@@ -28,17 +38,32 @@ router.get("/", function (req, res) {
 });
 
 
-// INDEX
+// INDEX - Default sort by dateAdded
 // Pull all of the users games from the db
 // Render a list of their games
 router.get("/games", function (req, res) {
-	Game.find({}, function (err, games) {
+	Game.find({}).sort(sortBy).exec(function (err, games) {
 		if (err) {
 			console.log("ERROR - GAMES INDEX ROUTE");
 		} else {
 			res.render("games/index", { games: games });
 		}
 	});
+});
+
+
+// INDEX/SORT - Set the sort order, redirect back to games
+router.get("/games/sort/:sortBy", function (req, res) {
+	sortBy = req.params.sortBy;
+	if (sortBy === "titleAccending") {
+		sortBy = "-title";
+	} else if (sortBy === "dateAddedDecending") {
+		sortBy = "-dateAdded";
+	} else if (sortBy == "dateDecending") {
+		sortBy = "-date";
+	}
+
+	res.redirect("/games")
 });
 
 

@@ -12,11 +12,41 @@
 
 <h2>ALL GAMES</h2>
 
+<!-- Bootstrap dropdown for display sorting -->
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort By
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+      <li><a href="/games/sort/title">A-Z</a></li>
+      <li><a href="/games/sort/titleAccending">Z-A</a></li>
+      <li><a href="/games/sort/dateAdded">Date Added - Oldest First</a></li>
+      <li><a href="/games/sort/dateAddedDecending">Date Added - Newest First</a></li>
+      <li><a href="/games/sort/date">Date Released - Oldest First</a></li>
+      <li><a href="/games/sort/dateDecending">Date Released - Newest First</a></li>
+      <!-- <li><a href="/games/sort/platform">Platform</a></li> -->
+  </ul>
+</div>
+
+
+
 <!-- Loop through all games and display the title for each -->
 <% games.forEach(function(game) { %>
 	<a href="/games/<%= game._id %>"><%= game.title %></a>
 	<br>
 <% }); %>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#sortDropdown').dropdown();
+    });
+</script>
+
+
 
 
 <!-- INCLUDE FOOTER -->
