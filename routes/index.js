@@ -10,6 +10,8 @@ var passport = require("passport");
 // MODELS
 var User = require("../models/user");
 
+
+
 // =====================
 // AUTHENTICATION ROUTES
 // =====================
@@ -39,9 +41,27 @@ router.post("/register", function (req, res) {
 });
 
 
+// LOGIN NEW
+// Display the form to login
+router.get("/login", function (req, res) {
+    res.render("../views/authentication/login");
+});
 
 
+// LOGIN
+router.post("/login", passport.authenticate("local", {
+    successRedirect: "/games",
+    failureRedirect: "/login"
+}), function (req, res) {
+});
 
+
+// LOGOUT
+// Logout the user
+router.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
+});
 
 
 
