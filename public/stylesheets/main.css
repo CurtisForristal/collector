@@ -1,0 +1,7 @@
+
+
+/* Disable the link for "Signed In As..." in the navbar */
+.disabled {
+    pointer-events: none;
+    cursor: default;
+}

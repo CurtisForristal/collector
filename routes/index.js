@@ -6,6 +6,7 @@
 var express = require("express");
 var router = express.Router({mergeParams: true});
 var passport = require("passport");
+var middleware = require("../middleware");
 
 // MODELS
 var User = require("../models/user");
@@ -58,7 +59,7 @@ router.post("/login", passport.authenticate("local", {
 
 // LOGOUT
 // Logout the user
-router.get("/logout", function (req, res) {
+router.get("/logout", middleware.isLoggedIn, function (req, res) {
     req.logout();
     res.redirect("/");
 });

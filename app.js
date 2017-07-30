@@ -59,6 +59,7 @@ app.use(require("express-session") ({
 	saveUninitialized: false,
 	store: new MongoStore({
 		mongooseConnection: mongoose.connection,
+		// Store the session for 14 days
 		ttl: 14 * 24 * 60 * 60
 	})
 }));

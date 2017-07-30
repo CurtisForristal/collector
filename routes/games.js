@@ -5,6 +5,7 @@
 var express = require("express");
 var router = express.Router({mergeParams: true});
 var request = require("request");
+var middleware = require("../middleware");
 
 
 // INCLUDE MODELS
@@ -41,7 +42,7 @@ router.get("/", function (req, res) {
 // INDEX - Default sort by dateAdded
 // Pull all of the users games from the db
 // Render a list of their games
-router.get("/games", function (req, res) {
+router.get("/games", middleware.isLoggedIn, function (req, res) {
 	Game.find({}).sort(sortBy).exec(function (err, games) {
 		if (err) {
 			console.log("ERROR - GAMES INDEX ROUTE");
@@ -53,7 +54,7 @@ router.get("/games", function (req, res) {
 
 
 // INDEX/SORT/:SORTBY - Set the sort order, redirect back to games
-router.get("/games/sort/:sortBy", function (req, res) {
+router.get("/games/sort/:sortBy", middleware.isLoggedIn, function (req, res) {
 	sortBy = req.params.sortBy;
 	// Decide if order needs to be flopped with a -
 	switch (sortBy) {
@@ -74,7 +75,7 @@ router.get("/games/sort/:sortBy", function (req, res) {
 // RESULTS
 // Use the GiantBomb API to search for video games in their database
 // Render the results on games/new
-router.get("/games/results", function (req, res) {
+router.get("/games/results", middleware.isLoggedIn, function (req, res) {
 	// Receive search from the form on games/index
 	var query = req.query.search;
 	// Create url from the giantbomb search query url, my API key, and the query variable
@@ -93,7 +94,7 @@ router.get("/games/results", function (req, res) {
 // Receive the game ID from the link in results.ejs
 // Find that game in the Giant Bomb database
 // Render a show page for that game with a link to add it to your collection
-router.get("/results/:id", function (req, res) {
+router.get("/results/:id", middleware.isLoggedIn, function (req, res) {
 	var resourceId = req.params.id;
 	var url = "http://www.giantbomb.com/api/game/" + resourceId + "/?api_key=" + key + "&format=json";
 
@@ -110,7 +111,7 @@ router.get("/results/:id", function (req, res) {
 // Receive the data from NEW
 // Add the new game to their list
 // Redirect to INDEX
-router.post("/games", function (req, res) {
+router.post("/games", middleware.isLoggedIn, function (req, res) {
 	var title = req.body.title;
 	var resourceId = req.body.resourceId;
 	var date = req.body.date;
@@ -146,7 +147,7 @@ router.post("/games", function (req, res) {
 // SHOW
 // Find the selected game
 // Render all info about the that game
-router.get("/games/:id", function (req, res) {
+router.get("/games/:id", middleware.isLoggedIn, function (req, res) {
 	Game.findById(req.params.id, function (err, foundGame) {
 		if (err) {
 			console.log("ERROR - GAMES SHOW ROUTE");
@@ -162,7 +163,7 @@ router.get("/games/:id", function (req, res) {
 // Find the game entry for that id
 // Also, use the store resourceID to find the game on Giant Bomb, to add addition platforms on edit page
 // Render the form to edit that entry
-router.get("/games/:id/edit", function (req, res){
+router.get("/games/:id/edit", middleware.isLoggedIn, function (req, res){
 	Game.findById(req.params.id, function (err, foundGame) {
 		if (err) {
 			console.log ("ERROR - GAMES EDIT ROUTE");
@@ -181,7 +182,7 @@ router.get("/games/:id/edit", function (req, res){
 // Receive the edited entry ovject from edit.ejs
 // Find the original entry and update it
 // Redirect to that entry's show view
-router.put("/games/:id", function (req, res) {
+router.put("/games/:id", middleware.isLoggedIn, function (req, res) {
 	Game.findByIdAndUpdate(req.params.id, req.body, function (err, updatedGame) {
 		if (err) {
 			console.log("ERROR - GAMES UPDATE ROUTE");
@@ -195,7 +196,7 @@ router.put("/games/:id", function (req, res) {
 // DESTORY
 // Find the selected game and delete it
 // Redirect to the games index view
-router.delete("/games/:id", function (req, res) {
+router.delete("/games/:id", middleware.isLoggedIn, function (req, res) {
 	Game.findByIdAndRemove(req.params.id, function (err) {
 		if (err) {
 			console.log("ERROR - GAMES DESTORY ROUTE");
