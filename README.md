@@ -16,7 +16,7 @@
 
 
 ### User List
-	* Sort by largest collections
+* Sort by largest collections
 
 
 ### Search for Users
