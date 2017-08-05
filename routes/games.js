@@ -10,6 +10,7 @@ var middleware = require("../middleware");
 
 // INCLUDE MODELS
 var Game = require("../models/game");
+var User = require("../models/user");
 
 
 // CONSTANTS
@@ -43,14 +44,25 @@ router.get("/", function (req, res) {
 // Pull all of the users games from the db
 // Render a list of their games
 router.get("/games", middleware.isLoggedIn, function (req, res) {
-	Game.find({}).sort(sortBy).exec(function (err, games) {
+	User.findOne({username: req.user.username}).populate("games").exec(function (err, user) {
 		if (err) {
 			console.log("ERROR - GAMES INDEX ROUTE");
 		} else {
-			res.render("games/index", { games: games });
+			res.render("games/index", { games: user.games });
 		}
 	});
-});
+});	
+	
+	
+	
+// 	Game.find({}).sort(sortBy).exec(function (err, games) {
+// 		if (err) {
+// 			console.log("ERROR - GAMES INDEX ROUTE");
+// 		} else {
+// 			res.render("games/index", { games: games });
+// 		}
+// 	});
+// });
 
 
 // INDEX/SORT/:SORTBY - Set the sort order, redirect back to games
@@ -138,7 +150,21 @@ router.post("/games", middleware.isLoggedIn, function (req, res) {
 		if (err) {
 			console.log("ERROR - GAMES CREATE ROUTE");
 		} else {
-			res.redirect("/games");
+			// add an Object Reference of the game to the current user's games array
+			User.findOne({username: req.user.username}, function(err, user) {
+				if (err) {
+					console.log("ERROR - GAME CREATE FIND CURRENT USER ROUTE");
+				} else {
+					user.games.push(newlyCreated);
+					user.save(function (err, data) {
+						if (err) {
+							console.log("ERROR - GAMES CREATE SAVE TO USER");
+						} else {
+							res.redirect("/games");
+						}
+					});
+				}
+			});
 		}
 	});
 });

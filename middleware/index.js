@@ -15,7 +15,5 @@ middlewareObj.isLoggedIn = function (req, res, next) {
 };
 
 
-
-
 // EXPORT
 module.exports = middlewareObj;
