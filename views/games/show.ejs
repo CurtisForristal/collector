@@ -16,12 +16,17 @@
 <% }); %> 
 
 
+<!-- Check for game ownership -->
+<!-- If logged in user is not the author of the game entry, don't display the Edit and Delete buttons  -->
+<% if (currentUser) { %>
+  <% if (game.author.id.equals(currentUser._id)) { %>
+    <a href="/games/<%= game._id %>/edit">Edit Platforms</a>
 
-<a href="/games/<%= game._id %>/edit">Edit Platforms</a>
-
-<form action="/games/<%= game._id %>?_method=DELETE" method="POST">
-  <button>Delete</button>
-</form>
+    <form action="/games/<%= game._id %>?_method=DELETE" method="POST">
+      <button>Delete</button>
+    </form>
+  <% } %>
+<% } %>
 
 
 

@@ -1,9 +1,6 @@
 # Collector
 
 
-### Authorization Middleware
-
-
 ### Collection Page
 * Display list of all added games
   	* Prob should "load more" after 50 or so
@@ -29,3 +26,15 @@
 
 
 ### Wish List
+
+
+### Flash Messages
+
+
+### Password Reset
+
+
+### BUG - Can't logout from GAME SHOW page
+
+
+###Styling

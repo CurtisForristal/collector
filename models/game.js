@@ -10,7 +10,15 @@ var gameSchema = new mongoose.Schema({
 	date: String,
 	resourceId: String,
 	platforms: [String],
-	dateAdded: {type: Date, default: Date.now}
+	dateAdded: {type: Date, default: Date.now},
+	// For authorization, store the user that added the game
+	author: {
+		id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User"
+		},
+		username: String
+	}
 });
 
 var Game = mongoose.model("Game", gameSchema);

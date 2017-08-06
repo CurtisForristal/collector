@@ -119,6 +119,7 @@ router.post("/games", middleware.isLoggedIn, function (req, res) {
 	var resourceId = req.body.resourceId;
 	var date = req.body.date;
 	var platforms = [];
+	var author = {id: req.user._id, username: req.user.username};
 
 	if (Array.isArray(req.body.platforms)) {
 		req.body.platforms.forEach (function (platform) {
@@ -133,7 +134,8 @@ router.post("/games", middleware.isLoggedIn, function (req, res) {
 		title: title,
 		resourceId: resourceId,
 		date: date,
-		platforms: platforms
+		platforms: platforms,
+		author: author
 	};
 
 
@@ -180,7 +182,7 @@ router.get("/games/:id", middleware.isLoggedIn, function (req, res) {
 // Find the game entry for that id
 // Also, use the store resourceID to find the game on Giant Bomb, to add addition platforms on edit page
 // Render the form to edit that entry
-router.get("/games/:id/edit", middleware.isLoggedIn, function (req, res){
+router.get("/games/:id/edit", middleware.isLoggedIn, middleware.checkGameOwnership, function (req, res){
 	Game.findById(req.params.id, function (err, foundGame) {
 		if (err) {
 			console.log ("ERROR - GAMES EDIT ROUTE");
@@ -199,7 +201,7 @@ router.get("/games/:id/edit", middleware.isLoggedIn, function (req, res){
 // Receive the edited entry ovject from edit.ejs
 // Find the original entry and update it
 // Redirect to that entry's show view
-router.put("/games/:id", middleware.isLoggedIn, function (req, res) {
+router.put("/games/:id", middleware.isLoggedIn, middleware.checkGameOwnership, function (req, res) {
 	Game.findByIdAndUpdate(req.params.id, req.body, function (err, updatedGame) {
 		if (err) {
 			console.log("ERROR - GAMES UPDATE ROUTE");
@@ -213,7 +215,7 @@ router.put("/games/:id", middleware.isLoggedIn, function (req, res) {
 // DESTORY
 // Find the selected game and delete it
 // Redirect to the games index view
-router.delete("/games/:id", middleware.isLoggedIn, function (req, res) {
+router.delete("/games/:id", middleware.isLoggedIn, middleware.checkGameOwnership, function (req, res) {
 	Game.findByIdAndRemove(req.params.id, function (err) {
 		if (err) {
 			console.log("ERROR - GAMES DESTORY ROUTE");
