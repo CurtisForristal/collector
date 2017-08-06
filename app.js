@@ -11,7 +11,8 @@ var passportLocalMongoose 	= require("passport-local-mongoose"),
 	mongoose 				= require("mongoose"),
 	passport 				= require("passport"),
 	express 				= require("express"),
-	request 				= require("request");
+	request 				= require("request"),
+	moment					= require("moment");
 
 
 // ==============
@@ -76,6 +77,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function (req, res, next) {
 	// Pass user through to all routes
 	res.locals.currentUser = req.user;
+	// use Moment for displaying Date Added
+	res.locals.moment = require("moment");
 	next();
 });
 

@@ -10,35 +10,49 @@
 		<button>Search</button>
 </form>
 
+
 <h2>ALL GAMES</h2>
-
-<!-- Bootstrap dropdown for display sorting -->
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Sort By
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-      <li><a href="/games/sort/title">A-Z</a></li>
-      <li><a href="/games/sort/titleAccending">Z-A</a></li>
-      <li><a href="/games/sort/dateAdded">Date Added - Oldest First</a></li>
-      <li><a href="/games/sort/dateAddedDecending">Date Added - Newest First</a></li>
-      <li><a href="/games/sort/date">Date Released - Oldest First</a></li>
-      <li><a href="/games/sort/dateDecending">Date Released - Newest First</a></li>
-      <!-- <li><a href="/games/sort/platform">Platform</a></li> -->
-  </ul>
-</div>
-
 
 
 <!-- Loop through all games and display the title for each -->
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Title</th>
-            <th>Release Year</th>
+            <th>
+                Title
+                <!-- Sort Decending By Title -->
+                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/title">
+                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                </a>
+                <!-- Sort Accending By Title -->
+                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/titleAccending">
+                    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+            </th>
+            <th>
+                Release Year
+                </a>
+                <!-- Sort Decending By Release Date -->
+                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/date">
+                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                </a>
+                <!-- Sort Accending By Release Date -->
+                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/dateDecending">
+                    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                </a>
+            </th>
+            <th>
+                Date Added
+                </a>
+                <!-- Sort Decending By Date Added -->
+                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/dateAdded">
+                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                </a>
+                <!-- Sort Accending By Date Added -->
+                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/dateAddedDecending">
+                    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                </a>
+            </th>
             <th>Platforms Owned On</th>
-            <th>Date Added</th>
         </tr>
     </thead>
 
@@ -47,6 +61,7 @@
             <tr>
                 <td><a href="/games/<%= game._id %>"><%= game.title %></a></td>
                 <td><%= game.date %></td>
+                <td><%= moment(game.dateAdded).format("MMM Do YYYY") %></td>
                 <td>
                     <!-- Check if it's the last platform in the list -->
                     <!-- If not, add a comma after the platform -->
@@ -58,23 +73,10 @@
                         <% } %> 
                     <% }; %>
                 </td>
-                <td><%= game.dateAdded %></td>
             </tr>
         <% }); %>
     </tbody>
 </table>
-
-
-
-
-
-
-<script>
-    $(document).ready(function () {
-        $('#sortDropdown').dropdown();
-    });
-</script>
-
 
 
 
