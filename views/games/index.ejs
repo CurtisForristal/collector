@@ -32,10 +32,39 @@
 
 
 <!-- Loop through all games and display the title for each -->
-<% games.forEach(function(game) { %>
-	<a href="/games/<%= game._id %>"><%= game.title %></a>
-	<br>
-<% }); %>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release Year</th>
+            <th>Platforms Owned On</th>
+            <th>Date Added</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% games.forEach(function(game) { %>
+            <tr>
+                <td><a href="/games/<%= game._id %>"><%= game.title %></a></td>
+                <td><%= game.date %></td>
+                <td>
+                    <!-- Check if it's the last platform in the list -->
+                    <!-- If not, add a comma after the platform -->
+                    <% for (var i = 0; i < game.platforms.length; i++) { %>
+                        <% if (i !== (game.platforms.length - 1)) { %>
+                            <%= game.platforms[i] + "," %>
+                        <% } else { %> 
+                            <%= game.platforms[i] %>
+                        <% } %> 
+                    <% }; %>
+                </td>
+                <td><%= game.dateAdded %></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+
 
 
 

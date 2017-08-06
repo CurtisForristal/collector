@@ -37,4 +37,4 @@
 ### BUG - Can't logout from GAME SHOW page
 
 
-###Styling
+### Styling
