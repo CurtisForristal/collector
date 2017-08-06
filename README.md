@@ -1,9 +1,6 @@
 # Collector
 
 
-### Collections for indivdual users
-
-
 ### Authorization Middleware
 
 

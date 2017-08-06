@@ -23,7 +23,7 @@ var key = process.env.GIANTBOMBAPIKEY;
 // ----------------
 // By default, INDEX will sort the games by dateAdded before displaying the list
 // sortBy will be changed by the "Sort By" dropdown on the INDEX view
-var sortBy = "dateAdded";
+var sortBy = "-dateAdded";
 
 
 // ==========================================================================
@@ -49,75 +49,7 @@ router.get("/games", middleware.isLoggedIn, function (req, res) {
 			console.log("ERROR - GAMES INDEX ROUTE");
 		} else {
 			var userGames = user.games;
-
-			switch (sortBy) {
-				case "title":
-					userGames.sort(function (a, b) {
-						if (a.title < b.title) {
-							return -1;
-						}
-						if (a.title > b.title) {
-							return 1;
-						}
-						return 0;
-					});
-					break;
-				case "-title":
-					userGames.sort(function (a, b) {
-						if (a.title < b.title) {
-							return 1;
-						}
-						if (a.title > b.title) {
-							return -1;
-						}
-						return 0;
-					});
-					break;
-				case "dateAdded":
-					userGames.sort(function (a, b) {
-						if (a.dateAdded < b.dateAdded) {
-							return -1;
-						}
-						if (a.dateAdded > b.dateAdded) {
-							return 1;
-						}
-						return 0;
-					});
-					break;
-				case "-dateAdded":
-					userGames.sort(function (a, b) {
-						if (a.dateAdded < b.dateAdded) {
-							return 1;
-						}
-						if (a.dateAdded > b.dateAdded) {
-							return -1;
-						}
-						return 0;
-					});
-					break;
-				case "date":
-					userGames.sort(function (a, b) {
-						if (a.date < b.date) {
-							return -1;
-						}
-						if (a.date > b.date) {
-							return 1;
-						}
-						return 0;
-					});
-					break;
-				case "-date":
-					userGames.sort(function (a, b) {
-						if (a.date < b.date) {
-							return 1;
-						}
-						if (a.date > b.date) {
-							return -1;
-						}
-						return 0;
-					});
-					break;
-			}
+			sortGames(userGames);
 			res.render("games/index", { games: userGames });
 		}
 	});
@@ -129,20 +61,11 @@ router.get("/games/sort/:sortBy", middleware.isLoggedIn, function (req, res) {
 	sortBy = req.params.sortBy;
 	// Decide if order needs to be flopped with a -
 	switch (sortBy) {
-		case "title":
-			sortBy = "title";
-			break;
 		case "titleAccending":
 			sortBy = "-title";
 			break;
-		case "dateAdded":
-			sortBy = "dateAdded";
-			break;
 		case "dateAddedDecending":
 			sortBy = "-dateAdded";
-			break;
-		case "date":
-			sortBy = "date";
 			break;
 		case "dateDecending":
 			sortBy = "-date";
@@ -329,6 +252,79 @@ var makeApiRequest = function (url) {
 	});
 }
 
+
+// Function: sortGames
+// Sort all of the current user's games according to the drop-down before displaying the list
+var sortGames = function (userGames) {
+	switch (sortBy) {
+		case "title":
+			userGames.sort(function (a, b) {
+				if (a.title < b.title) {
+					return -1;
+				}
+				if (a.title > b.title) {
+					return 1;
+				}
+				return 0;
+			});
+			break;
+		case "-title":
+			userGames.sort(function (a, b) {
+				if (a.title < b.title) {
+					return 1;
+				}
+				if (a.title > b.title) {
+					return -1;
+				}
+				return 0;
+			});
+			break;
+		case "dateAdded":
+			userGames.sort(function (a, b) {
+				if (a.dateAdded < b.dateAdded) {
+					return -1;
+				}
+				if (a.dateAdded > b.dateAdded) {
+					return 1;
+				}
+				return 0;
+			});
+			break;
+		case "-dateAdded":
+			userGames.sort(function (a, b) {
+				if (a.dateAdded < b.dateAdded) {
+					return 1;
+				}
+				if (a.dateAdded > b.dateAdded) {
+					return -1;
+				}
+				return 0;
+			});
+			break;
+		case "date":
+			userGames.sort(function (a, b) {
+				if (a.date < b.date) {
+					return -1;
+				}
+				if (a.date > b.date) {
+					return 1;
+				}
+				return 0;
+			});
+			break;
+		case "-date":
+			userGames.sort(function (a, b) {
+				if (a.date < b.date) {
+					return 1;
+				}
+				if (a.date > b.date) {
+					return -1;
+				}
+				return 0;
+			});
+			break;
+	}
+}
 
 
 // EXPORT
