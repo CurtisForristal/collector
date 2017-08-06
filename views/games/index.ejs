@@ -61,7 +61,8 @@
             <tr>
                 <td><a href="/games/<%= game._id %>"><%= game.title %></a></td>
                 <td><%= game.date %></td>
-                <td><%= moment(game.dateAdded).format("MMM Do YYYY") %></td>
+                <!-- Use Moment framework to display date -->
+                <td><%= moment(game.dateAdded).format("MMMM Do YYYY, h:mm:ss a") %></td>
                 <td>
                     <!-- Check if it's the last platform in the list -->
                     <!-- If not, add a comma after the platform -->
