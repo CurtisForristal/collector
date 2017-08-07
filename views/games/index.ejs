@@ -53,6 +53,12 @@
                 </a>
             </th>
             <th>Platforms Owned On</th>
+             <!-- If displaying currentUser's collection, display Delete Game category -->
+            <% if (currentUser) { %>
+                <% if (games[0].author.id.equals(currentUser._id)) { %>
+                    <th>Delete Game</th>
+                <% } %>
+            <% } %>
         </tr>
     </thead>
 
@@ -71,8 +77,24 @@
                             <%= game.platforms[i] + "," %>
                         <% } else { %> 
                             <%= game.platforms[i] %>
+                            <!-- If displaying currentUser's collection, display edit button -->
+                            <% if (currentUser) { %>
+                                <% if (game.author.id.equals(currentUser._id)) { %>
+                                    <a class="btn btn-default btn-xs" href="/games/<%= game._id %>/edit">Edit</a>
+                                <% } %>
+                            <% } %>
                         <% } %> 
                     <% }; %>
+                </td>
+                <td>
+                    <!-- If displaying currentUser's collection, display delete button -->
+                    <% if (currentUser) { %>
+                        <% if (games[0].author.id.equals(currentUser._id)) { %>
+                                <form action="/games/<%= game._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-danger btn-xs">Delete</button>
+                                </form>
+                        <% } %>
+                    <% } %>
                 </td>
             </tr>
         <% }); %>

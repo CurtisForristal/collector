@@ -221,7 +221,7 @@ router.put("/games/:id", middleware.isLoggedIn, middleware.checkGameOwnership, f
 		if (err) {
 			console.log("ERROR - GAMES UPDATE ROUTE");
 		} else {
-			res.redirect("/games/" + req.params.id);
+			res.redirect("/games");
 		}
 	});
 });

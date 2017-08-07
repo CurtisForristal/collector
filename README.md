@@ -5,8 +5,8 @@
 * Search collection
 * Sort
  	* Display all from only checked platforms
-* Put Edit button next to platforms, remove <a> from title
-* Add Delete Column
+
+### Delete SHOW page and remove <a> tags from game list
 
 ### User Profile
 
