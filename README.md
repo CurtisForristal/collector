@@ -24,3 +24,5 @@
 ### Styling
 
 ### Finalize README
+
+### Update GitHub page info

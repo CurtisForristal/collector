@@ -1,0 +1,35 @@
+<!-- INCLUDE HEADER -->
+<% include ./partials/header %>
+
+
+<h1>ALL USERS</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Number of Games</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% users.forEach(function(user) { %>
+            <tr>
+                <td><a href="/games"><%= user.username %></a></td>
+                <td><%= user.games.length %></td>
+            </tr>
+        <% }); %>  
+    </tbody>
+
+</table>
+
+
+
+
+
+
+
+
+
+<!-- INCLUDE FOOTER -->
+<% include ./partials/footer %>
