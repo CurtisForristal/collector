@@ -5,3 +5,7 @@
     pointer-events: none;
     cursor: default;
 }
+
+.landing-flash-messages {
+    margin-top: 50px;
+}

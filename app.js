@@ -79,6 +79,9 @@ app.use(function (req, res, next) {
 	res.locals.currentUser = req.user;
 	// use Moment for displaying Date Added
 	res.locals.moment = require("moment");
+	// For flash messages with connect-flash
+	res.locals.error = req.flash("error");
+	res.locals.success = req.flash("success");
 	next();
 });
 

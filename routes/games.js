@@ -47,6 +47,7 @@ router.get("/games", middleware.isLoggedIn, function (req, res) {
 	User.findOne({username: req.user.username}).populate("games").exec(function (err, user) {
 		if (err) {
 			console.log("ERROR - GAMES INDEX ROUTE");
+			req.flash("error", "Cannot find that user");
 		} else {
 			var userGames = user.games;
 			sortGames(userGames);
@@ -62,6 +63,7 @@ router.get("/games/users/:username", function (req, res) {
 	User.findOne({username: req.params.username}).populate("games").exec(function (err, foundUser) {
 		if (err) {
 			console.log("ERROR - INDEX USER'S GAMES ROUTE");
+			req.flash("error", "Cannot find that user");
 		} else {
 			var userGames = foundUser.games;
 			sortGames(userGames);
@@ -157,36 +159,26 @@ router.post("/games", middleware.isLoggedIn, function (req, res) {
 	Game.create(newGame, function (err, newlyCreated) {
 		if (err) {
 			console.log("ERROR - GAMES CREATE ROUTE");
+			req.flash("error", "There was an error adding that game to your list");
 		} else {
 			// add an Object Reference of the game to the current user's games array
 			User.findOne({username: req.user.username}, function(err, user) {
 				if (err) {
 					console.log("ERROR - GAME CREATE FIND CURRENT USER ROUTE");
+					req.flash("error", "Cannot find that user");
 				} else {
 					user.games.push(newlyCreated);
 					user.save(function (err, data) {
 						if (err) {
 							console.log("ERROR - GAMES CREATE SAVE TO USER");
+							req.flash("error", "There was an error saving that game to your list");
 						} else {
+							req.flash("success", newlyCreated.title + " was added to your collection");
 							res.redirect("/games");
 						}
 					});
 				}
 			});
-		}
-	});
-});
-
-
-// SHOW
-// Find the selected game
-// Render all info about the that game
-router.get("/games/:id", middleware.isLoggedIn, function (req, res) {
-	Game.findById(req.params.id, function (err, foundGame) {
-		if (err) {
-			console.log("ERROR - GAMES SHOW ROUTE");
-		} else {
-				res.render("games/show", {game: foundGame});
 		}
 	});
 });
@@ -201,6 +193,7 @@ router.get("/games/:id/edit", middleware.isLoggedIn, middleware.checkGameOwnersh
 	Game.findById(req.params.id, function (err, foundGame) {
 		if (err) {
 			console.log ("ERROR - GAMES EDIT ROUTE");
+			req.flash("error", "There was an error locating that game");
 		} else {
 			// Use resourceID to find game om Giant Bomb
 			var url = "http://www.giantbomb.com/api/game/" + foundGame.resourceId + "/?api_key=" + key + "&format=json"; 
@@ -220,7 +213,9 @@ router.put("/games/:id", middleware.isLoggedIn, middleware.checkGameOwnership, f
 	Game.findByIdAndUpdate(req.params.id, req.body, function (err, updatedGame) {
 		if (err) {
 			console.log("ERROR - GAMES UPDATE ROUTE");
+			req.flash("error", "There was an error locating that game");
 		} else {
+			req.flash("success", updatedGame.title + " platforms updated");
 			res.redirect("/games");
 		}
 	});
@@ -231,10 +226,12 @@ router.put("/games/:id", middleware.isLoggedIn, middleware.checkGameOwnership, f
 // Find the selected game and delete it
 // Redirect to the games index view
 router.delete("/games/:id", middleware.isLoggedIn, middleware.checkGameOwnership, function (req, res) {
-	Game.findByIdAndRemove(req.params.id, function (err) {
+	Game.findByIdAndRemove(req.params.id, function (err, foundGame) {
 		if (err) {
 			console.log("ERROR - GAMES DESTORY ROUTE");
+			req.flash("error", "There was an error locating that game");
 		} else {
+			req.flash("error", foundGame.title + " was deleted from your collection");
 			res.redirect("/games");
 		}
 	});
@@ -264,6 +261,8 @@ var makeApiRequest = function (url) {
 				resolve(data);
 			} else {
 				reject("ERROR CODE" + response.statusCode);
+				req.flash("error", "There was an error making the API request");
+				res.redirect("/");
 			}
 		});
 	});

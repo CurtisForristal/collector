@@ -31,10 +31,10 @@ router.post("/register", function (req, res) {
 
     User.register(newUser, req.body.password, function (err, user) {
         if (err) {
-            console.log("ERROR - REGISTER CREATE ROUTE");
-            return res.render("register");
+            return res.render("authentication/register", {error: err.message});
         } else {
             passport.authenticate("local")(req, res, function() {
+                req.flash("success", "Welcome to Collector " + user.username);
                 res.redirect("/games");
             });
         }
@@ -61,6 +61,7 @@ router.post("/login", passport.authenticate("local", {
 // Logout the user
 router.get("/logout", middleware.isLoggedIn, function (req, res) {
     req.logout();
+    req.flash("success", "Logged You Out");
     res.redirect("/");
 });
 
@@ -73,6 +74,7 @@ router.get("/users", function (req, res) {
     User.find({}).sort({__v: -1}).exec(function (err, users) {
         if (err) {
             console.log("ERROR - USERS ROUTE");
+            req.flash("error", "There was a problems finding all users");
         } else {
             res.render("users", {users: users});
         }

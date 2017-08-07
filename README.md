@@ -6,11 +6,7 @@
 * Sort
  	* Display all from only checked platforms
 
-### Delete SHOW page and remove <a> tags from game list
-
 ### User Profile
-
-### Flash Messages
 
 ### Delete Game confirmation question
 

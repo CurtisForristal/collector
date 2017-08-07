@@ -55,7 +55,7 @@
             <th>Platforms Owned On</th>
              <!-- If displaying currentUser's collection, display Delete Game category -->
             <% if (currentUser) { %>
-                <% if (games[0].author.id.equals(currentUser._id)) { %>
+                <% if (games.length > 0 && games[0].author.id.equals(currentUser._id)) { %>
                     <th>Delete Game</th>
                 <% } %>
             <% } %>
