@@ -51,7 +51,7 @@ router.get("/games", middleware.isLoggedIn, function (req, res) {
 		} else {
 			var userGames = user.games;
 			sortGames(userGames);
-			res.render("games/index", { games: userGames });
+			res.render("games/index", { games: userGames, page: "games" });
 		}
 	});
 });

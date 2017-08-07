@@ -32,15 +32,25 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="/games">My Collection</a></li>
-        <li><a href="/users">All Users</a></li>
+        <!-- This class determines whether the button should be set to active or not -->
+        <!-- When active, the button will be highlighted in the navbar -->
+        <!-- This also requires that {page: "games"} be passed in the res.render of the INDEX route -->
+        <li class="<%= typeof page !== 'undefined' && page === 'games' ? 'active' : '' %>">
+          <a href="/games">My Collection</a>
+        </li>
+        <li class="<%= typeof page !== 'undefined' && page === 'users' ? 'active' : '' %>">
+          <a href="/users">All Users</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- Check if a user is signed in and display button accordingly -->
         <% if (!currentUser) { %>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
+          <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">
+            <a href="/login">Login</a>
+          </li>
+          <li class="<%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">
+            <a href="/register">Register</a>
+          </li>
         <% } else { %>
           <li><a href="#" class="disabled">Signed In As <%= currentUser.username %></a></li>
           <li><a href="/logout">Logout</a></li>

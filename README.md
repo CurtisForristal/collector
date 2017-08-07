@@ -12,7 +12,7 @@
 
 ### Password Reset
 
-### In navbar, highlight the link for the page you are on and delete the "Link" button
+### When displaying another user's collection, change the header to say "____'s Collection"
 
 ### Styling
 

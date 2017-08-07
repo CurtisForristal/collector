@@ -20,7 +20,7 @@ var User = require("../models/user");
 // REGISTER NEW
 // Display the form to register a new user
 router.get("/register", function (req, res) {
-    res.render("../views/authentication/register")
+    res.render("../views/authentication/register", {page: "register"})
 });
 
 
@@ -45,7 +45,7 @@ router.post("/register", function (req, res) {
 // LOGIN NEW
 // Display the form to login
 router.get("/login", function (req, res) {
-    res.render("../views/authentication/login");
+    res.render("../views/authentication/login", {page: "login"});
 });
 
 
@@ -76,7 +76,7 @@ router.get("/users", function (req, res) {
             console.log("ERROR - USERS ROUTE");
             req.flash("error", "There was a problems finding all users");
         } else {
-            res.render("users", {users: users});
+            res.render("users", {users: users, page: "users"});
         }
     });
 });
