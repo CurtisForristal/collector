@@ -8,9 +8,6 @@
 * Put Edit button next to platforms, remove <a> from title
 * Add Delete Column
 
-### User List
-* Sort by largest collections
-
 ### User Profile
 
 ### Flash Messages
@@ -19,7 +16,7 @@
 
 ### Password Reset
 
-### BUG - Can't logout from GAME SHOW page
+### In navbar, highlight the link for the page you are on and delete the "Link" button
 
 ### Styling
 

@@ -53,7 +53,22 @@ router.get("/games", middleware.isLoggedIn, function (req, res) {
 			res.render("games/index", { games: userGames });
 		}
 	});
-});	
+});
+
+
+// INDEX - USER'S GAMES
+// List all games for a specific user
+router.get("/games/users/:username", function (req, res) {
+	User.findOne({username: req.params.username}).populate("games").exec(function (err, foundUser) {
+		if (err) {
+			console.log("ERROR - INDEX USER'S GAMES ROUTE");
+		} else {
+			var userGames = foundUser.games;
+			sortGames(userGames);
+			res.render("games/index", {games: userGames});
+		}
+	});
+});
 
 
 // INDEX/SORT/:SORTBY - Set the sort order, redirect back to games

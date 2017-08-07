@@ -69,19 +69,15 @@ router.get("/logout", middleware.isLoggedIn, function (req, res) {
 // USERS ROUTES
 // ============
 router.get("/users", function (req, res) {
-    User.find({}, function (err, users) {
+    // Sort by number of games; mongo stores the length of the games array as "__v"
+    User.find({}).sort({__v: -1}).exec(function (err, users) {
         if (err) {
             console.log("ERROR - USERS ROUTE");
         } else {
-            // Sort users based on number of games
-            users.sort(function (a, b) {
-                return a.games.length + b.games.length;
-            });
             res.render("users", {users: users});
         }
     });
 });
-
 
 
 // EXPORT

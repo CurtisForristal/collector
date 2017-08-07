@@ -15,7 +15,7 @@
     <tbody>
         <% users.forEach(function(user) { %>
             <tr>
-                <td><a href="/games"><%= user.username %></a></td>
+                <td><a href="/games/users/<%= user.username %>"><%= user.username %></a></td>
                 <td><%= user.games.length %></td>
             </tr>
         <% }); %>  
