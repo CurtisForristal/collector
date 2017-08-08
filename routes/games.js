@@ -74,7 +74,7 @@ router.get("/games/users/:username", function (req, res) {
 
 
 // INDEX/SORT/:SORTBY - Set the sort order, redirect back to games
-router.get("/games/sort/:sortBy", middleware.isLoggedIn, function (req, res) {
+router.get("/games/sort/:user/:sortBy", function (req, res) {
 	sortBy = req.params.sortBy;
 	// Decide if order needs to be flopped with a -
 	switch (sortBy) {
@@ -88,7 +88,7 @@ router.get("/games/sort/:sortBy", middleware.isLoggedIn, function (req, res) {
 			sortBy = "-date";
 			break;
 	}
-	res.redirect("/games");
+		res.redirect("/games/users/" + req.params.user);
 });
 
 
