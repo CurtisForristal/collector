@@ -1,35 +1,22 @@
 <!-- INCLUDE HEADER -->
 <% include ../partials/header %>
 
+<!-- If a User is signed in and viewing their collection, -->
+<!-- then display the form to search for a game to add -->
+<% if (currentUser && currentUser.username === user) { %>
+    <h1>My Collection</h1>
 
-<% if (currentUser) { %>
-    <% if (games.length > 0 && games[0].author.id.equals(currentUser._id)) { %>
-        <h1>My Collection</h1>
-    <% } %>
-
-    <% if (currentUser.username !== user) { %>
-        <h1><%= user %>'s Collection</h1>
-    <% } %>
-<% } %>
-
-
-<% if (!currentUser) { %>
+    <form action="/games/results" method="GET">
+        <label>Add A Game To Your Collection</label>
+        <input type="text" name="search" placeholder="search">
+        <button>Search</button>
+    </form>
+    <br>
+<% } else { %>
+    <!-- If User is not viewing their collection, -->
+    <!-- then display the user's name for the collection they are viewing -->
     <h1><%= user %>'s Collection</h1>
 <% } %>
-
-
-<!-- If a User is signed in and on his/her collection page, display the Add Game search field -->
-<% if (currentUser) { %>
-    <% if (currentUser.username === user) { %>
-        <form action="/games/results" method="GET">
-                <label>Add A Game To Your Collection</label>
-                <input type="text" name="search" placeholder="search">
-                <button>Search</button>
-        </form>
-        <br>
-    <% } %>
-<% } %>
-
 
 
 <!-- Loop through all games and display the title for each -->
