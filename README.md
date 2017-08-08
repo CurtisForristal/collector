@@ -12,8 +12,6 @@
 
 ### Password Reset
 
-### When displaying another user's collection, change the header to say "____'s Collection"
-
 ### Styling
 
 ### Finalize README
