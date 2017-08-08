@@ -3,7 +3,7 @@
 // ==========
 
 var mongoose = require("mongoose");
-
+var User = require("./user");
 
 var gameSchema = new mongoose.Schema({
 	title: String,
@@ -20,6 +20,8 @@ var gameSchema = new mongoose.Schema({
 		username: String
 	}
 });
+
+
 
 var Game = mongoose.model("Game", gameSchema);
 

@@ -231,8 +231,22 @@ router.delete("/games/:id", middleware.isLoggedIn, middleware.checkGameOwnership
 			console.log("ERROR - GAMES DESTORY ROUTE");
 			req.flash("error", "There was an error locating that game");
 		} else {
-			req.flash("error", foundGame.title + " was deleted from your collection");
-			res.redirect("/games");
+			// Find the Current User
+			User.findByIdAndUpdate(req.user._id, 
+				{
+					// Remove the Object Reference of the game from the User's games array
+					$pull: {
+						games: req.params.id
+					}
+				}, function (err) {
+					if (err) {
+						req.flash("error", "There was an error locating that game");
+						console.log("ERROR - GAME DESTROY ROUTE PART 2");
+					} else {
+						req.flash("error", foundGame.title + " was deleted from your collection");
+						res.redirect("/games");
+					}
+				});
 		}
 	});
 });

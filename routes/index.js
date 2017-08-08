@@ -34,7 +34,7 @@ router.post("/register", function (req, res) {
             return res.render("authentication/register", {error: err.message});
         } else {
             passport.authenticate("local")(req, res, function() {
-                req.flash("success", "Welcome to Collector " + user.username);
+                req.flash("success", "Welcome to Collector, " + user.username);
                 res.redirect("/games");
             });
         }
