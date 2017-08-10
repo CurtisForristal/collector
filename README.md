@@ -6,10 +6,6 @@
 * Sort
  	* Display all from only checked platforms
 
-### User Profile
-
-### Delete Game confirmation question
-
 ### Password Reset
 
 ### Styling

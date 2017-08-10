@@ -95,7 +95,7 @@
                     <!-- If displaying currentUser's collection, display delete button -->
                     <% if (currentUser) { %>
                         <% if (games[0].author.id.equals(currentUser._id)) { %>
-                                <form action="/games/<%= game._id %>?_method=DELETE" method="POST">
+                                <form id="deleteButton" action="/games/<%= game._id %>?_method=DELETE" method="POST">
                                     <button class="btn btn-danger btn-xs">Delete</button>
                                 </form>
                         <% } %>
@@ -105,6 +105,21 @@
         <% }); %>
     </tbody>
 </table>
+
+
+<!-- Bootbox - Used to confirmation alert when attempting to delete a game -->
+<!-- When user clicks the Delete button, the confirmation box appears -->
+<script type="text/javascript">
+    $("#deleteButton").on("click", function(e){
+        // prevents the default form behavior
+        e.preventDefault();
+        bootbox.confirm("Are you sure you want to delete this game?", function(result) {
+            if (result) {
+                $("#deleteButton").submit();
+            }
+        });
+    }); 
+</script>
 
 
 
