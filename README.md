@@ -6,8 +6,6 @@
 * Sort
  	* Display all from only checked platforms
 
-### Password Reset
-
 ### Styling
 
 ### Finalize README
