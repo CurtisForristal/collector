@@ -87,6 +87,9 @@ router.get("/games/sort/:user/:sortBy", function (req, res) {
 		case "dateDecending":
 			sortBy = "-date";
 			break;
+		case "platformAccending":
+			sortBy = "-platform";
+			break;
 	}
 		res.redirect("/games/users/" + req.params.user);
 });
@@ -348,6 +351,28 @@ var sortGames = function (userGames) {
 					return 1;
 				}
 				if (a.date > b.date) {
+					return -1;
+				}
+				return 0;
+			});
+			break;
+		case "platform":
+			userGames.sort(function (a, b) {
+				if (a.platforms[0] < b.platforms[0]) {
+					return -1;
+				}
+				if (a.platforms[0] > b.platforms[0]) {
+					return 1;
+				}
+				return 0;
+			});
+			break;
+		case "-platform":
+			userGames.sort(function (a, b) {
+				if (a.platforms[0] < b.platforms[0]) {
+					return 1;
+				}
+				if (a.platforms[0] > b.platforms[0]) {
 					return -1;
 				}
 				return 0;
