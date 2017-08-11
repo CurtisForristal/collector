@@ -12,7 +12,9 @@ var userSchema = new mongoose.Schema ({
     games: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Game"
-    }]
+    }],
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
 });
 
 userSchema.plugin(passportLocalMongoose);
