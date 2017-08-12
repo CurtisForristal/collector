@@ -1,0 +1,30 @@
+/* STYLE SHEET  */
+/* LANDING PAGE  */
+
+
+html {
+    background-color: black;
+}
+
+
+body {
+    background-color: black !important;
+}
+
+
+.display-1 {
+    color: white;
+    text-align: center;
+}
+
+.landing-flash-messages {
+    margin-top: 50px;
+}
+
+#topRowButtons {
+
+}
+
+#github {
+    margin-top: 10px;
+}

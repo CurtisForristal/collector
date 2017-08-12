@@ -4,8 +4,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Collectors</title>
 
+  <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
@@ -13,56 +14,49 @@
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Collectors</a>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Collectors</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <!-- This class determines whether the button should be set to active or not -->
-        <!-- When active, the button will be highlighted in the navbar -->
-        <!-- This also requires that {page: "games"} be passed in the res.render of the INDEX route -->
-        <li class="<%= typeof page !== 'undefined' && page === 'games' ? 'active' : '' %>">
-          <a href="/games">My Collection</a>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!-- This class determines whether the button should be set to active or not -->
+      <!-- When active, the button will be highlighted in the navbar -->
+      <!-- This also requires that {page: "games"} be passed in the res.render of the INDEX route -->
+      <li class="nav-item <%= typeof page !== 'undefined' && page === 'games' ? 'active' : '' %>">
+        <a class="nav-link" href="/games">My Collection</a>
+      </li>
+      <li class="<%= typeof page !== 'undefined' && page === 'users' ? 'active' : '' %>">
+        <a class="nav-link" href="/users">All Users</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <!-- Check if a user is signed in and display button accordingly -->
+      <% if (!currentUser) { %>
+        <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">
+          <a class="nav-link" href="/login">Login</a>
         </li>
-        <li class="<%= typeof page !== 'undefined' && page === 'users' ? 'active' : '' %>">
-          <a href="/users">All Users</a>
+        <li class="<%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">
+          <a class="nav-link" href="/register">Register</a>
         </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <!-- Check if a user is signed in and display button accordingly -->
-        <% if (!currentUser) { %>
-          <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">
-            <a href="/login">Login</a>
-          </li>
-          <li class="<%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">
-            <a href="/register">Register</a>
-          </li>
-        <% } else { %>
-          <li><a href="#" class="disabled">Signed In As <%= currentUser.username %></a></li>
-          <li><a href="/logout">Logout</a></li>
-        <% } %>
-        <!-- GitHub Page link -->
-        <li>
-          <!-- target="_blank" opens the link in a new tab -->
-          <a href="https://github.com/CurtisForristal/collector" target="_blank">
-            <i class="fa fa-github"></i> GitHub Page
-          </a>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+      <% } else { %>
+        <li><a class="nav-link" href="#" class="disabled">Signed In As <%= currentUser.username %></a></li>
+        <li><a class="nav-link" href="/logout">Logout</a></li>
+      <% } %>
+      <!-- GitHub Page link -->
+      <li>
+        <!-- target="_blank" opens the link in a new tab -->
+        <a class="nav-link" href="https://github.com/CurtisForristal/collector" target="_blank">
+          <i class="fa fa-github"></i> GitHub Page
+        </a>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
 </nav>
+
 
 
 <!-- FLASH MESSAGES -->

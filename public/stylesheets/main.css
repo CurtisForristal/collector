@@ -1,11 +1,17 @@
 
 
+html {
+    background-color: black;
+}
+
+
 /* Disable the link for "Signed In As..." in the navbar */
 .disabled {
     pointer-events: none;
     cursor: default;
 }
 
-.landing-flash-messages {
-    margin-top: 50px;
+
+.fa {
+    color: gray;
 }

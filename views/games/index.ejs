@@ -20,54 +20,39 @@
 
 
 <!-- Loop through all games and display the game info for each -->
-<table class="table table-striped">
+<table class="container-fluid table table-striped table-inverse">
     <thead>
         <tr>
             <th>
                 Title
                 <!-- Sort Decending By Title -->
-                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/<%= user %>/title">
-                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                </a>
+                <a class="fa fa-arrow-down" aria-hidden="true" href="/games/sort/<%= user %>/title"></a>
                 <!-- Sort Accending By Title -->
-                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/<%= user %>/titleAccending">
-                    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                <a class="fa fa-arrow-up" aria-hidden="true" href="/games/sort/<%= user %>/titleAccending"></a>
             </th>
             <th>
                 Release Year
                 </a>
                 <!-- Sort Decending By Release Date -->
-                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/<%= user %>/date">
-                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                </a>
+                <a class="fa fa-arrow-down" href="/games/sort/<%= user %>/date"></a>
                 <!-- Sort Accending By Release Date -->
-                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/<%= user %>/dateDecending">
-                    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-                </a>
+                <a class="fa fa-arrow-up" href="/games/sort/<%= user %>/dateDecending"></a>
             </th>
             <th>
                 Date Added
                 </a>
                 <!-- Sort Decending By Date Added -->
-                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/<%= user %>/dateAdded">
-                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                </a>
+                <a class="fa fa-arrow-down" href="/games/sort/<%= user %>/dateAdded"></a>
                 <!-- Sort Accending By Date Added -->
-                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/<%= user %>/dateAddedDecending">
-                    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-                </a>
+                <a class="fa fa-arrow-up" href="/games/sort/<%= user %>/dateAddedDecending"></a>
             </th>
             <th>
                 Platforms Owned On
                 </a>
                 <!-- Sort Decending By Platform -->
-                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/<%= user %>/platform">
-                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                </a>
+                <a class="fa fa-arrow-down" href="/games/sort/<%= user %>/platform"></a>
                 <!-- Sort Accending By Platform -->
-                <a type="button" class="btn btn-default btn-xs" aria-label="Left Align" href="/games/sort/<%= user %>/platformAccending">
-                    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-                </a>
+                <a class="fa fa-arrow-up" href="/games/sort/<%= user %>/platformAccending"></a>
             
             </th>
              <!-- If displaying currentUser's collection, display Delete Game category -->
@@ -97,7 +82,7 @@
                             <!-- If displaying currentUser's collection, display edit button -->
                             <% if (currentUser) { %>
                                 <% if (game.author.id.equals(currentUser._id)) { %>
-                                    <a class="btn btn-default btn-xs" href="/games/<%= game._id %>/edit">Edit</a>
+                                    <a class="btn btn-outline-secondary btn-sm" href="/games/<%= game._id %>/edit">Edit</a>
                                 <% } %>
                             <% } %>
                         <% } %> 
@@ -108,7 +93,7 @@
                     <% if (currentUser) { %>
                         <% if (games[0].author.id.equals(currentUser._id)) { %>
                                 <form id="deleteButton" action="/games/<%= game._id %>?_method=DELETE" method="POST">
-                                    <button class="btn btn-danger btn-xs">Delete</button>
+                                    <button class="btn btn-outline-danger btn-sm">Delete</button>
                                 </form>
                         <% } %>
                     <% } %>

@@ -4,14 +4,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Collectors</title>
 
-    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/landing.css">
 	<script
-  src="http://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+        src="http://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
 	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -34,25 +34,33 @@
 </div> 
 
 
+<div class="container" id="fullContainer">
+    <h1 class="display-1">THE COLLECTORS</h1>
 
-<h1>COLLECTORS</h1>
+    <% if (!currentUser) { %>
+            <div class="row">
+                <div class="">    
+                    <div id="topRowButtons" class="btn-group" role="group">
+                        <a href="/login" class="btn btn-outline-secondary">Login</a>
+                        <a href="/register" class="btn btn-outline-secondary">Register</a>
+                        <a href="/users" class="btn btn-outline-secondary">All Users</a>
+                    </div>
+                </div>
+            </div>
+    <% } else { %>
+        <div class="btn-group" role="group">
+            <a href="/games" class="btn btn-outline-secondary">My Collection</a>
+            <a href="/users" class="btn btn-outline-secondary">All Users</a>
+        </div>
+    <% } %>
 
-<% if (!currentUser) { %>
-    <a href="/login" class="btn btn-default">Login</a>
-    <a href="/register" class="btn btn-default">Register</a>
-    <a href="/users" class="btn btn-default">All Users</a>
-<% } else { %>
-    <a href="/games" class="btn btn-default">My Collection</a>
-    <a href="/users" class="btn btn-default">All Users</a>
-<% } %>
-
-<div>
-    <!-- target="_blank" opens the link in a new tab -->
-    <a class="btn btn-default" href="https://github.com/CurtisForristal/collector" target="_blank">
-        <i class="fa fa-github"></i> GitHub Page
-    </a>
+    <div>
+        <!-- target="_blank" opens the link in a new tab -->
+        <a id="github" class="btn btn-outline-secondary" href="https://github.com/CurtisForristal/collector" target="_blank">
+            <i class="fa fa-github"></i> GitHub Page
+        </a>
+    </div>
 </div>
-
 
 </body>
 </html>
