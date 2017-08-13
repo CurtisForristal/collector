@@ -21,6 +21,10 @@ body {
     cursor: default;
 }
 
+.flashMessages {
+    margin-top: 10px;
+}
+
 
 /* INDEX.EJS  */
 .display-3 {
@@ -108,7 +112,13 @@ body {
 }
 
 ul li {
-    color: gray
+    color: gray;
+}
+
+#noResults {
+    color: gray;
+    text-align: center;
+    margin-top: 40px;
 }
 
 
