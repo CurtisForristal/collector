@@ -2,30 +2,32 @@
 <% include ../partials/header %>
 
 
-<h1>ADD A GAME TO YOUR COLLECTION</h1>
+<div class="container formContainer">
+	<h1 id="displayHeader" class="display-5">ADD A GAME TO YOUR COLLECTION</h1>
 
-<%# Disaply search results from the Giant Bomb API %>
-<% if(data.results.length > 0) { %>
-	<ul>
-			<% data.results.forEach (function(game) { %>
-				<%# Parse the property api_detail_url for the Resource ID at the end of it %>
-				<% var resouceId = game.api_detail_url.substring(35, game.api_detail_url.length); %>
+	<%# Disaply search results from the Giant Bomb API %>
+	<% if(data.results.length > 0) { %>
+		<ul>
+				<% data.results.forEach (function(game) { %>
+					<%# Parse the property api_detail_url for the Resource ID at the end of it %>
+					<% var resouceId = game.api_detail_url.substring(35, game.api_detail_url.length); %>
 
-				<li>
-						<a href="/results/<%= resouceId %>"><strong><%= game.name %></strong></a>
-						<%#  Cut the original_release_date down to just the year only %>
-						<% if (game.original_release_date) { %>
-							<%= game.original_release_date.substring(0, 4) %>
-						<% } else { %>
-							N/A
-						<% } %>
-				</li>
-		<% }); %>
-	</ul>
-<% } else { %>
-		<h4>No results found, please try a different title</h4>
-<% } %>
+					<li>
+							<a class="title" href="/results/<%= resouceId %>"><strong><%= game.name %></strong></a>
+							<%#  Cut the original_release_date down to just the year only %>
+							<% if (game.original_release_date) { %>
+								<span class="date"><%= game.original_release_date.substring(0, 4) %></span>
+							<% } else { %>
+								N/A
+							<% } %>
+					</li>
+			<% }); %>
+		</ul>
+	<% } else { %>
+			<h4>No results found, please try a different title</h4>
+	<% } %>
 
+</div>
 
 
 

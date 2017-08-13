@@ -1,9 +1,19 @@
 
 
 html {
-    background-color: black;
+    background-color: #1c1c1c !important;
 }
 
+body {
+    background-color: #1c1c1c !important;
+}
+
+.navbar-brand {
+    font-family: 'Audiowide', cursive;
+    font-size: 5px;
+    font-size: 17px !important;
+    margin-top: 1px;
+}
 
 /* Disable the link for "Signed In As..." in the navbar */
 .disabled {
@@ -12,6 +22,121 @@ html {
 }
 
 
+/* INDEX.EJS  */
+.display-3 {
+    color: gray;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+}
+
+.indexHeader {
+    margin-top: 50px;
+}
+
+#addGame {
+    color: gray;
+    text-align: center;
+}
+
+#searchButton {
+    margin-bottom: 3px;
+}
+
 .fa {
     color: gray;
+}
+
+
+/* REGISTER.EJS */
+
+.formContainer {
+    width: 40% !important;
+    margin-top: 50px;
+}
+
+.formLabel {
+    color: gray;
+}
+
+/* USERS.EJS */
+#allUsersHeader {
+    margin-top: 50px;
+}
+
+#allUsersTable {
+    width: 35%;
+}
+
+.user {
+    color: white;
+    text-decoration: underline;
+}
+
+/* EDIT.EJS */
+#editPlatformsHeader {
+    color: gray;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+    margin-top: 50px;
+}
+
+.display-5 {
+    color: gray;
+    font-family: 'Audiowide', cursive;
+    margin-top: 30px;
+}
+
+.platform {
+    color: gray;
+}
+
+
+/* RESULTS.EJS */
+#displayHeader {
+    color: gray;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+    margin-top: 50px;
+}
+
+.title {
+    color: #e0e0e0;
+}
+
+.date {
+    color: gray;
+}
+
+ul li {
+    color: gray
+}
+
+
+/* RESULTSSHOW.EJS */
+
+.game {
+    color: gray;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+    margin-top: 50px;
+}
+
+.selectPlatformsHeader {
+    text-align: center;
+}
+
+.selectPlatformsTitle {
+    color: gray;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+    margin-top: 100px;
+}
+
+.selectPlatformsDate {
+    margin-top: 10px !important;
+    text-align: center;
+}
+
+.selectPlatforms {
+    margin-top: 10px !important;
 }

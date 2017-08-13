@@ -2,36 +2,35 @@
 <% include ../partials/header %>
 
 
-<h1>RESULTS SHOW</h1>
-
-<form action="/games" method="POST">
-  <!-- Pass the resourceId through to CREATE  -->
-  <input type="hidden" name="resourceId" value="<%= resourceId %>">
-  <div>
-    <input type="hidden" name="title" value="<%= data.results.name %>">
-    <%= data.results.name %>
-  </div>
-
-  <div>
-    <input type="hidden" name="date" value="<%= data.results.original_release_date.substring(0, 4) %>">
-    <%= data.results.original_release_date.substring(0, 4) %>
-  </div>
-
-  <br>
-  <h4><strong>Select A Platform</strong></h4>
-  <% data.results.platforms.forEach (function (platform) { %>
+<div class="container formContainer">
+  <form action="/games" method="POST">
+    <!-- Pass the resourceId through to CREATE  -->
+    <input type="hidden" name="resourceId" value="<%= resourceId %>">
     <div>
-      <input type="checkbox" name="platforms" value="<%= platform.name %>">
-      <label><%= platform.name %></label>
+      <input type="hidden" name="title" value="<%= data.results.name %>">
+      <h1 class="selectPlatformsTitle display-4"><%= data.results.name.toUpperCase() %></h1>
     </div>
-  <% }); %>
+
+    <div>
+      <input type="hidden" name="date" value="<%= data.results.original_release_date.substring(0, 4) %>">
+      <h1 class="selectPlatformsDate display-5"><%= data.results.original_release_date.substring(0, 4) %></h1>
+    </div>
+
+    <br>
+    <h4 class="selectPlatforms display-5">Select Your Platform(s):</h4>
+    <% data.results.platforms.forEach (function (platform) { %>
+      <div>
+        <input type="checkbox" name="platforms" value="<%= platform.name %>">
+        <label class="platform"><%= platform.name %></label>
+      </div>
+    <% }); %>
 
 
-  <br>
-  <button type="submit" name="game" value="<%= data.results.name %>" disabled>
-    Add Game(s) To Your Collection</button>
-</form>
-
+    <br>
+    <button class="btn btn-outline-secondary" type="submit" name="game" value="<%= data.results.name %>" disabled>
+      Add Game To Your Collection</button>
+  </form>
+</div>
 
 <%# Use Jquery to check if a checkbox is selected. %>
 <%# If any boxes are selected, enable the submit button %>

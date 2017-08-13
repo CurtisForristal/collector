@@ -5,15 +5,19 @@
 	<title>Collectors</title>
 
     <link rel="stylesheet" type="text/css" href="/stylesheets/landing.css">
-	<script
-        src="http://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous">
-    </script>
+    
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <!-- For the GitHub icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    
+    <!-- Main header font -->
+    <link href="https://fonts.googleapis.com/css?family=Audiowide|Orbitron" rel="stylesheet">
+    
+    <!-- For the large dpad icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <body>
 
 <!-- Add Flash Messages to langing page -->
@@ -33,34 +37,44 @@
     <% } %>
 </div> 
 
+<ul class="slideshow">
+    <li><i id="dpad" class="material-icons">games</i></li>
+</ul>
 
-<div class="container" id="fullContainer">
-    <h1 class="display-1">THE COLLECTORS</h1>
 
-    <% if (!currentUser) { %>
-            <div class="row">
-                <div class="">    
-                    <div id="topRowButtons" class="btn-group" role="group">
-                        <a href="/login" class="btn btn-outline-secondary">Login</a>
-                        <a href="/register" class="btn btn-outline-secondary">Register</a>
-                        <a href="/users" class="btn btn-outline-secondary">All Users</a>
-                    </div>
-                </div>
+<div class="vertical-center">
+    <div class="container">
+
+
+        <!-- <i id="dpad" class="material-icons">games</i> -->
+
+        <h1 class="display-1">THE COLLECTORS</h1>
+
+        <% if (!currentUser) { %>
+            <div id="topRowButtons" class="btn-group" role="group">
+                <a href="/login" class="btn btn-outline-secondary">Login</a>
+                <a href="/register" class="btn btn-outline-secondary">Register</a>
+                <a href="/users" class="btn btn-outline-secondary">View All Users</a>
             </div>
-    <% } else { %>
-        <div class="btn-group" role="group">
-            <a href="/games" class="btn btn-outline-secondary">My Collection</a>
-            <a href="/users" class="btn btn-outline-secondary">All Users</a>
-        </div>
-    <% } %>
+        <% } else { %>
+            <div class="btn-group" role="group">
+                <a href="/games" class="btn btn-outline-secondary">My Collection</a>
+                <a href="/users" class="btn btn-outline-secondary">View All Users</a>
+            </div>
+        <% } %>
 
-    <div>
-        <!-- target="_blank" opens the link in a new tab -->
-        <a id="github" class="btn btn-outline-secondary" href="https://github.com/CurtisForristal/collector" target="_blank">
-            <i class="fa fa-github"></i> GitHub Page
-        </a>
+        <div>
+            <!-- target="_blank" opens the link in a new tab -->
+            <a id="github" class="btn btn-outline-secondary" href="https://github.com/CurtisForristal/collector" target="_blank">
+                <i class="fa fa-github"></i> GitHub Page
+            </a>
+        </div>
     </div>
 </div>
+
+
+
+
 
 </body>
 </html>

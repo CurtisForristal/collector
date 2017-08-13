@@ -2,43 +2,45 @@
 <% include ../partials/header %>
 
 
-<h1>Edit Platforms for <%= game.title %></h1>
-
-<h4>Currently Owned Plaforms:</h4>
 
 
-<form action="/games/<%= game._id %>?_method=PUT" method="POST">
+<div class="container formContainer">
+    <h1 id="editPlatformsHeader" class="formHeader display-5">EDIT PLATFORMS FOR <%= game.title.toUpperCase() %></h1>
+    <h4 class="display-5">CURRENTLY OWNED PLATFORMS:</h4>
 
-     <!-- Create empty array.  
-        This array will be used to compare currently owned platforms 
-        to additional platforms in the Giant Bomb db.  -->
-    <% var currentlyOwned = []; %>
-    
-    <% game.platforms.forEach(function (platform) { %>
-        <% currentlyOwned.push(platform); %>
-        <div>
-            <input type="checkbox" name="platforms" value="<%= platform %>" checked>
-            <label><%= platform %></label>
-        </div>
-    <% }); %>
+    <form action="/games/<%= game._id %>?_method=PUT" method="POST">
 
-    <h4>Additional Platforms</h4>
-
-    <% data.results.platforms.forEach(function (platform) { %>
-        <!-- Compare platform to those in the currentyOwned array -->
-        <!-- If no match, display platform as a new selection -->
-         <% if (currentlyOwned.indexOf(platform.name) === -1) { %> 
+        <!-- Create empty array.  
+            This array will be used to compare currently owned platforms 
+            to additional platforms in the Giant Bomb db.  -->
+        <% var currentlyOwned = []; %>
+        
+        <% game.platforms.forEach(function (platform) { %>
+            <% currentlyOwned.push(platform); %>
             <div>
-                <input type="checkbox" name="platforms" value="<%= platform.name %>">
-                <label><%= platform.name %></label>
+                <input type="checkbox" name="platforms" value="<%= platform %>" checked>
+                <label class="platform"><%= platform %></label>
             </div>
-         <% } %> 
-    <% }); %>
+        <% }); %>
 
-  <br>
-  <button type="submit">Update Platforms</button>
+        <h4 class="display-5">Additional Platforms:</h4>
 
-</form>
+        <% data.results.platforms.forEach(function (platform) { %>
+            <!-- Compare platform to those in the currentyOwned array -->
+            <!-- If no match, display platform as a new selection -->
+            <% if (currentlyOwned.indexOf(platform.name) === -1) { %> 
+                <div>
+                    <input type="checkbox" name="platforms" value="<%= platform.name %>">
+                    <label class="platform"><%= platform.name %></label>
+                </div>
+            <% } %> 
+        <% }); %>
+
+    <br>
+    <button class="btn btn-outline-secondary" type="submit">Update Platforms</button>
+
+    </form>
+</div>
 
 
 <%# Use Jquery to check if a checkbox is selected. %>

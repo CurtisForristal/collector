@@ -4,18 +4,22 @@
 <!-- If a User is signed in and viewing their collection, -->
 <!-- then display the form to search for a game to add -->
 <% if (currentUser && currentUser.username === user) { %>
-    <h1>My Collection</h1>
+    <h1 class="indexHeader display-3">My Collection</h1>
 
-    <form action="/games/results" method="GET">
-        <label>Add A Game To Your Collection</label>
+    <form id="addGame" action="/games/results" method="GET">
+        <label >Add A Game To Your Collection</label>
         <input type="text" name="search" placeholder="search">
-        <button>Search</button>
+        <button id="searchButton" class="btn btn-outline-secondary">Search</button>
     </form>
     <br>
 <% } else { %>
     <!-- If User is not viewing their collection, -->
     <!-- then display the user's name for the collection they are viewing -->
-    <h1><%= user %>'s Collection</h1>
+    <% if (user[user.length -1] === "s") { %>
+        <h1 class="indexHeader display-3"><%= user %>' Collection</h1>
+    <% } else { %>
+        <h1 class="indexHeader display-3"><%= user %>'s Collection</h1>
+    <% } %>
 <% } %>
 
 
@@ -26,33 +30,33 @@
             <th>
                 Title
                 <!-- Sort Decending By Title -->
-                <a class="fa fa-arrow-down" aria-hidden="true" href="/games/sort/<%= user %>/title"></a>
+                <a class="fa fa-caret-down fa-lg" aria-hidden="true" href="/games/sort/<%= user %>/title"></a>
                 <!-- Sort Accending By Title -->
-                <a class="fa fa-arrow-up" aria-hidden="true" href="/games/sort/<%= user %>/titleAccending"></a>
+                <a class="fa fa-caret-up fa-lg" aria-hidden="true" href="/games/sort/<%= user %>/titleAccending"></a>
             </th>
             <th>
                 Release Year
                 </a>
                 <!-- Sort Decending By Release Date -->
-                <a class="fa fa-arrow-down" href="/games/sort/<%= user %>/date"></a>
+                <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/date"></a>
                 <!-- Sort Accending By Release Date -->
-                <a class="fa fa-arrow-up" href="/games/sort/<%= user %>/dateDecending"></a>
+                <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/dateDecending"></a>
             </th>
             <th>
                 Date Added
                 </a>
                 <!-- Sort Decending By Date Added -->
-                <a class="fa fa-arrow-down" href="/games/sort/<%= user %>/dateAdded"></a>
+                <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/dateAdded"></a>
                 <!-- Sort Accending By Date Added -->
-                <a class="fa fa-arrow-up" href="/games/sort/<%= user %>/dateAddedDecending"></a>
+                <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/dateAddedDecending"></a>
             </th>
             <th>
                 Platforms Owned On
                 </a>
                 <!-- Sort Decending By Platform -->
-                <a class="fa fa-arrow-down" href="/games/sort/<%= user %>/platform"></a>
+                <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/platform"></a>
                 <!-- Sort Accending By Platform -->
-                <a class="fa fa-arrow-up" href="/games/sort/<%= user %>/platformAccending"></a>
+                <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/platformAccending"></a>
             
             </th>
              <!-- If displaying currentUser's collection, display Delete Game category -->

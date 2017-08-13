@@ -2,27 +2,27 @@
 <% include ./partials/header %>
 
 
-<h1>ALL USERS</h1>
+<h1 id="allUsersHeader" class="display-3">ALL USERS</h1>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>User</th>
-            <th>Number of Games</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% users.forEach(function(user) { %>
+<div id="allUsersTable" class="container">
+    <table class="container-fluid table table-striped table-inverse">
+        <thead>
             <tr>
-                <td><a href="/games/users/<%= user.username %>"><%= user.username %></a></td>
-                <td><%= user.games.length %></td>
+                <th>User</th>
+                <th>Number of Games</th>
             </tr>
-        <% }); %>  
-    </tbody>
+        </thead>
 
-</table>
-
+        <tbody>
+            <% users.forEach(function(user) { %>
+                <tr>
+                    <td><a class="user" href="/games/users/<%= user.username %>"><%= user.username %></a></td>
+                    <td><%= user.games.length %></td>
+                </tr>
+            <% }); %>  
+        </tbody>
+    </table>
+</div>
 
 
 <!-- INCLUDE FOOTER -->
