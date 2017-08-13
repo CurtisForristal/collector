@@ -1,5 +1,6 @@
 # Collector
 
+### NOTE: Delete Confirmation broken until Bootbox is updated for Bootstrap 4
 
 ### Collection Page
 * Search collection

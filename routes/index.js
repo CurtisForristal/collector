@@ -63,7 +63,6 @@ router.post("/login", passport.authenticate("local", {
     failureRedirect: "/login",
     // Flash messages to display on success/fail of login
     failureFlash: true,
-    successFlash: "You are logged in."
 }), function (req, res) {
 });
 
@@ -72,7 +71,6 @@ router.post("/login", passport.authenticate("local", {
 // Logout the user
 router.get("/logout", middleware.isLoggedIn, function (req, res) {
     req.logout();
-    req.flash("success", "You have been logged out.");
     res.redirect("/");
 });
 

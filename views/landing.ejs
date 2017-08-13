@@ -24,14 +24,14 @@
 <div class="container landing-flash-messages">
     <!-- Display error flash messages (since header partial wasn't included) -->
     <% if (error && error.length > 0) { %>
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-light" role="alert">
             <%= error %>
         </div>
     <% } %>
     
     <!-- Disaply success flash messages (since header partial wasn't included) -->
     <% if (success && success.length > 0) { %>
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-dark" role="alert">
             <%= success %>
         </div>
     <% } %>
