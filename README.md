@@ -5,8 +5,6 @@
 * Sort
  	* Display all from only checked platforms
 
-### Styling
-
 ### Responsive
 
 ### Clean-up and Refactor CSS

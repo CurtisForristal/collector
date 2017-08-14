@@ -1,66 +1,51 @@
 /* STYLE SHEET  */
 /* LANDING PAGE  */
 
-
-html {
-    background-color: #1c1c1c;
-}
-
-
 body {
-    height: 100%;
     background-color: #1c1c1c !important;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:100vh;
+    z-index: 0;
+    position: relative;
 }
 
 
+/* Display Backround Icon Image */
+body::after {
+    content: "games";
+    font-family: "Material Icons";
+    font-size: 80em;
+  } 
+
+
+/* Center the Title and Buttons */
+.mainContent {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+
+/* "Collector" Title */
 .display-1 {
     color: gray;
-    text-align: center;
     font-family: 'Audiowide', cursive;
-    font-weight: 300 !important;
     z-index: 1;
     position: relative;
 }
 
-.landing-flash-messages {
-    margin-top: 50px;
-}
 
+/* GitHub Page button */
 #github {
     margin-top: 10px;
     z-index: 1;
     position: relative;
 }
-
-#dpad {
-    font-size: 100em;
-
-    /* positions the element relative to the screen's viewport and won't scroll */
-    position: fixed;
-    /* to take up the entire page */
-    width: 100%;
-    height: 100%;
-    /* position the images in the top-left corner of the page */
-    top: 0;
-    left: 0;
-    /* make sure the photos are behind the rest of the content */
-    z-index: 0;
-    /* remove the bullet points from the li's */
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-
-
-.vertical-center {
-    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-    min-height: 100vh; /* These two lines are counted as one :-)       */
-  
-    display: flex;
-    align-items: center;
-  }
 
 
 
