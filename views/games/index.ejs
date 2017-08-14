@@ -4,7 +4,7 @@
 <!-- If a User is signed in and viewing their collection, -->
 <!-- then display the form to search for a game to add -->
 <% if (currentUser && currentUser.username === user) { %>
-    <h1 class="indexHeader display-3">My Collection</h1>
+    <h1 class="display-3 standardHeader">My Collection</h1>
 
     <form id="addGame" action="/games/results" method="GET">
         <label >Add A Game To Your Collection</label>
@@ -16,15 +16,15 @@
     <!-- If User is not viewing their collection, -->
     <!-- then display the user's name for the collection they are viewing -->
     <% if (user[user.length -1] === "s") { %>
-        <h1 class="indexHeader display-3"><%= user %>' Collection</h1>
+        <h1 class="display-3 standardHeader"><%= user %>' Collection</h1>
     <% } else { %>
-        <h1 class="indexHeader display-3"><%= user %>'s Collection</h1>
+        <h1 class="display-3 standardHeader"><%= user %>'s Collection</h1>
     <% } %>
 <% } %>
 
 
 <!-- Loop through all games and display the game info for each -->
-<table class="container-fluid table table-striped table-inverse">
+<table id="indexTable" class="container-fluid table table-striped table-inverse">
     <thead>
         <tr>
             <th>

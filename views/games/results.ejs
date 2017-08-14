@@ -3,7 +3,7 @@
 
 
 <div class="container formContainer">
-	<h1 id="displayHeader" class="display-5">ADD A GAME TO YOUR COLLECTION</h1>
+	<h1 class="display-5 standardHeader">ADD A GAME TO YOUR COLLECTION</h1>
 
 	<%# Disaply search results from the Giant Bomb API %>
 	<% if(data.results.length > 0) { %>
@@ -12,11 +12,11 @@
 					<%# Parse the property api_detail_url for the Resource ID at the end of it %>
 					<% var resouceId = game.api_detail_url.substring(35, game.api_detail_url.length); %>
 
-					<li>
+					<li class="grayColor">
 							<a class="title" href="/results/<%= resouceId %>"><strong><%= game.name %></strong></a>
 							<%#  Cut the original_release_date down to just the year only %>
 							<% if (game.original_release_date) { %>
-								<span class="date"><%= game.original_release_date.substring(0, 4) %></span>
+								<span class="grayColor"><%= game.original_release_date.substring(0, 4) %></span>
 							<% } else { %>
 								N/A
 							<% } %>

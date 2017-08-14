@@ -1,13 +1,13 @@
+/* STYLE SHEET */
+/* MAIN SITE (NOT LANDING PAGE) */
 
-
-html {
-    background-color: #1c1c1c !important;
-}
 
 body {
     background-color: #1c1c1c !important;
 }
 
+
+/* Navbar brand font */
 .navbar-brand {
     font-family: 'Audiowide', cursive;
     font-size: 5px;
@@ -15,106 +15,89 @@ body {
     margin-top: 1px;
 }
 
-/* Disable the link for "Signed In As..." in the navbar */
-.disabled {
+
+/* Disable pointer when hovering over "Signed In As..." in the navbar */
+#disabled {
     pointer-events: none;
     cursor: default;
 }
 
+
+/* Padding for Flash Messages */
 .flashMessages {
     margin-top: 10px;
 }
 
 
-/* INDEX.EJS  */
-.display-3 {
-    color: gray;
-    text-align: center;
-    font-family: 'Audiowide', cursive;
-}
-
-.indexHeader {
-    margin-top: 50px;
-}
-
-#addGame {
-    color: gray;
-    text-align: center;
-}
-
-#searchButton {
-    margin-bottom: 3px;
-}
-
-.fa {
-    color: gray;
-}
-
-
-/* REGISTER.EJS */
-
-.formContainer {
-    width: 40% !important;
-    margin-top: 50px;
-}
-
-.formLabel {
-    color: gray;
-}
-
-/* USERS.EJS */
-#allUsersHeader {
-    margin-top: 50px;
-}
-
-#allUsersTable {
-    width: 35%;
-}
-
-.user {
-    color: white;
-    text-decoration: underline;
-}
-
-/* EDIT.EJS */
-#editPlatformsHeader {
+/* Page Headers */
+.standardHeader {
     color: gray;
     text-align: center;
     font-family: 'Audiowide', cursive;
     margin-top: 50px;
 }
 
-.display-5 {
+
+/* Sub Headers on EDIT */
+.subHeader {
     color: gray;
     font-family: 'Audiowide', cursive;
     margin-top: 30px;
 }
 
-.platform {
-    color: gray;
-}
 
-
-/* RESULTS.EJS */
-#displayHeader {
+/* Add Game Search Box on INDEX page */
+#addGame {
     color: gray;
     text-align: center;
-    font-family: 'Audiowide', cursive;
-    margin-top: 50px;
 }
 
+
+/* Table on INDEX */
+#indexTable {
+    margin-top: 30px;
+}
+
+
+/* Center search button on INDEX */
+#searchButton {
+    margin-bottom: 3px;
+}
+
+
+/* Sort arrows on INDEX */
+.fa {
+    color: gray;
+}
+
+
+/* Form container on REGISTER and EDIT */
+.formContainer {
+    width: 40% !important;
+}
+
+
+/* Table on USERS */
+#allUsersTable {
+    width: 35%;
+    margin-top: 30px;
+}
+
+
+/* List of users on USERS */
+.user {
+    color: white;
+    text-decoration: underline;
+}
+
+
+/* Game titles on RESULTS */
 .title {
     color: #e0e0e0;
 }
 
-.date {
-    color: gray;
-}
 
-ul li {
-    color: gray;
-}
-
+/* No Results Found line on RESULTSs */
 #noResults {
     color: gray;
     text-align: center;
@@ -122,31 +105,23 @@ ul li {
 }
 
 
-/* RESULTSSHOW.EJS */
-
-.game {
-    color: gray;
-    text-align: center;
-    font-family: 'Audiowide', cursive;
-    margin-top: 50px;
-}
-
-.selectPlatformsHeader {
-    text-align: center;
-}
-
-.selectPlatformsTitle {
-    color: gray;
-    text-align: center;
-    font-family: 'Audiowide', cursive;
-    margin-top: 100px;
-}
-
+/* Date line on RESULTS SHOW */
 .selectPlatformsDate {
+    color: gray;
+    font-family: 'Audiowide', cursive;
     margin-top: 10px !important;
     text-align: center;
 }
 
+
+/* Select Your Platform line on RESULTS SHOW */
 .selectPlatforms {
+    color: gray;
+    font-family: 'Audiowide', cursive;
     margin-top: 10px !important;
+}
+
+
+.grayColor {
+    color: gray;
 }

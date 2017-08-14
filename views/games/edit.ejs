@@ -5,8 +5,8 @@
 
 
 <div class="container formContainer">
-    <h1 id="editPlatformsHeader" class="formHeader display-5">EDIT PLATFORMS FOR <%= game.title.toUpperCase() %></h1>
-    <h4 class="display-5">CURRENTLY OWNED PLATFORMS:</h4>
+    <h1 class="display-5 standardHeader">EDIT PLATFORMS FOR <%= game.title.toUpperCase() %></h1>
+    <h4 class="display-5 subHeader">CURRENTLY OWNED PLATFORMS:</h4>
 
     <form action="/games/<%= game._id %>?_method=PUT" method="POST">
 
@@ -19,11 +19,11 @@
             <% currentlyOwned.push(platform); %>
             <div>
                 <input type="checkbox" name="platforms" value="<%= platform %>" checked>
-                <label class="platform"><%= platform %></label>
+                <label class="grayColor"><%= platform %></label>
             </div>
         <% }); %>
 
-        <h4 class="display-5">Additional Platforms:</h4>
+        <h4 class="display-5 subHeader">Additional Platforms:</h4>
 
         <% data.results.platforms.forEach(function (platform) { %>
             <!-- Compare platform to those in the currentyOwned array -->
@@ -31,7 +31,7 @@
             <% if (currentlyOwned.indexOf(platform.name) === -1) { %> 
                 <div>
                     <input type="checkbox" name="platforms" value="<%= platform.name %>">
-                    <label class="platform"><%= platform.name %></label>
+                    <label class="grayColor"><%= platform.name %></label>
                 </div>
             <% } %> 
         <% }); %>

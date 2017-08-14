@@ -8,12 +8,12 @@
     <input type="hidden" name="resourceId" value="<%= resourceId %>">
     <div>
       <input type="hidden" name="title" value="<%= data.results.name %>">
-      <h1 class="selectPlatformsTitle display-4"><%= data.results.name.toUpperCase() %></h1>
+      <h1 class="display-4 standardHeader"><%= data.results.name.toUpperCase() %></h1>
     </div>
 
     <div>
       <input type="hidden" name="date" value="<%= data.results.original_release_date.substring(0, 4) %>">
-      <h1 class="selectPlatformsDate display-5"><%= data.results.original_release_date.substring(0, 4) %></h1>
+      <h2 class="selectPlatformsDate display-5"><%= data.results.original_release_date.substring(0, 4) %></h2>
     </div>
 
     <br>
@@ -21,7 +21,7 @@
     <% data.results.platforms.forEach (function (platform) { %>
       <div>
         <input type="checkbox" name="platforms" value="<%= platform.name %>">
-        <label class="platform"><%= platform.name %></label>
+        <label class="grayColor"><%= platform.name %></label>
       </div>
     <% }); %>
 

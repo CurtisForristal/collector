@@ -7,8 +7,6 @@
 
 ### Responsive
 
-### Clean-up and Refactor CSS
-
 ### Check for other refactoriing needed
 
 ### Finalize README
