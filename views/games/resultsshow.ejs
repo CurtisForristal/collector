@@ -8,7 +8,7 @@
     <input type="hidden" name="resourceId" value="<%= resourceId %>">
     <div>
       <input type="hidden" name="title" value="<%= data.results.name %>">
-      <h1 class="display-4 standardHeader"><%= data.results.name.toUpperCase() %></h1>
+      <h1 class="display-4 smallerHeader"><%= data.results.name.toUpperCase() %></h1>
     </div>
 
     <div>
@@ -21,7 +21,7 @@
     <% data.results.platforms.forEach (function (platform) { %>
       <div>
         <input type="checkbox" name="platforms" value="<%= platform.name %>">
-        <label class="grayColor"><%= platform.name %></label>
+        <label class="lightGrayColor"><%= platform.name %></label>
       </div>
     <% }); %>
 

@@ -38,9 +38,17 @@ body {
 }
 
 
+.smallerHeader {
+    color: gray;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+    margin-top: 50px;
+}
+
+
 /* Sub Headers on EDIT */
 .subHeader {
-    color: gray;
+    color: #C3C3C3;
     font-family: 'Audiowide', cursive;
     margin-top: 30px;
 }
@@ -59,6 +67,11 @@ body {
 }
 
 
+/* Form container on REGISTER and EDIT */
+.formContainer {
+    width: 40% !important;
+}
+
 /* Center search button on INDEX */
 #searchButton {
     margin-bottom: 3px;
@@ -68,12 +81,6 @@ body {
 /* Sort arrows on INDEX */
 .fa {
     color: gray;
-}
-
-
-/* Form container on REGISTER and EDIT */
-.formContainer {
-    width: 40% !important;
 }
 
 
@@ -116,7 +123,7 @@ body {
 
 /* Select Your Platform line on RESULTS SHOW */
 .selectPlatforms {
-    color: gray;
+    color: #C3C3C3;
     font-family: 'Audiowide', cursive;
     margin-top: 10px !important;
 }
@@ -124,4 +131,89 @@ body {
 
 .grayColor {
     color: gray;
+}
+
+.lightGrayColor {
+    color: #C3C3C3;
+}
+
+
+
+/* ============== */
+/* RESPONSIVENESS */
+/* ============== */
+
+
+/* Extra large devices (large desktops, 1200px) */
+@media (max-width: 1200px) {
+    
+    .standardHeader {
+        overflow-wrap: break-word;
+        word-break:break-word;
+    }
+
+    /* Form container on REGISTER and EDIT */
+    .formContainer {
+        width: 60% !important;
+    }
+}
+
+
+/* Large devices (desktops, 992px) */
+@media (max-width: 992px) {
+    
+    .standardHeader {
+        font-size: 4em !important; 
+        overflow-wrap: break-word;
+        word-break:break-word;
+    }
+
+    /* Form container on REGISTER and EDIT */
+    .formContainer {
+        width: 70% !important;
+    }
+}
+
+
+/* Medium devices (tablets, 768px) */
+@media (max-width: 768px) {
+    
+    .standardHeader {
+        font-size: 3em !important; 
+        overflow-wrap: break-word;
+        word-break:break-word;
+    }
+
+    .smallerHeader {
+        font-size: 2.5em !important;
+        overflow-wrap: break-word;
+        word-break:break-word;
+    }
+
+    /* Form container on REGISTER and EDIT */
+    .formContainer {
+        width: 80% !important;
+    }
+}
+
+
+/* Small devices (landscape phones, 576px) */
+@media (max-width: 575px) { 
+
+    .standardHeader {
+        font-size: 2.5em !important;
+        overflow-wrap: break-word;
+        word-break:break-word;
+    }
+
+    .smallerHeader {
+        font-size: 2em !important;
+        overflow-wrap: break-word;
+        word-break:break-word;
+    }
+
+    /* Form container on REGISTER and EDIT */
+    .formContainer {
+        width: 100% !important;
+    }
 }
