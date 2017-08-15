@@ -19,7 +19,7 @@ body::after {
     content: "games";
     font-family: "Material Icons";
     font-size: 80em;
-  } 
+} 
 
 
 /* Center the Title and Buttons */
@@ -49,3 +49,58 @@ body::after {
 
 
 
+/* ============== */
+/* RESPONSIVENESS */
+/* ============== */
+
+
+/* Extra large devices (large desktops, 1200px) */
+@media (max-width: 1200px) {
+
+}
+
+
+/* Large devices (desktops, 992px) */
+@media (max-width: 992px) {
+    
+    /* Background Icon */
+    body::after {
+        content: "games";
+        font-family: "Material Icons";
+        font-size: 60em;
+    } 
+}
+
+
+/* Medium devices (tablets, 768px) */
+@media (max-width: 768px) {
+    
+    /* COLLETOR header */
+    .display-1 {
+        font-size: 4.5em !important;
+    }
+
+    /* Background Icon */
+    body::after {
+        content: "games";
+        font-family: "Material Icons";
+        font-size: 50em;
+    } 
+}
+
+
+/* Small devices (landscape phones, 576px) */
+@media (max-width: 575px) { 
+    
+    /* COLLETOR header */    
+    .display-1 {
+        font-size: 3rem !important;
+    }
+
+    /* Background Icon */
+    body::after {
+        content: "games";
+        font-family: "Material Icons";
+        font-size: 30em;
+    } 
+}

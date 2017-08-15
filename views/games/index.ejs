@@ -3,6 +3,8 @@
 
 <!-- If a User is signed in and viewing their collection, -->
 <!-- then display the form to search for a game to add -->
+
+
 <% if (currentUser && currentUser.username === user) { %>
     <h1 class="display-3 standardHeader">My Collection</h1>
 
@@ -11,127 +13,135 @@
         <input type="text" name="search" placeholder="search">
         <button id="searchButton" class="btn btn-outline-secondary">Search</button>
     </form>
-    <br>
 <% } else { %>
-    <!-- If User is not viewing their collection, -->
-    <!-- then display the user's name for the collection they are viewing -->
-    <% if (user[user.length -1] === "s") { %>
-        <h1 class="display-3 standardHeader"><%= user %>' Collection</h1>
-    <% } else { %>
-        <h1 class="display-3 standardHeader"><%= user %>'s Collection</h1>
-    <% } %>
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- If User is not viewing their collection, -->
+            <!-- then display the user's name for the collection they are viewing -->
+            <% if (user[user.length -1] === "s") { %>
+                <h1 class="display-3 standardHeader"><%= user %>' Collection</h1>
+            <% } else { %>
+                <h1 class="display-3 standardHeader"><%= user %>'s Collection</h1>
+            <% } %>
+        </div>
+    </div>  
 <% } %>
 
 
 <!-- Loop through all games and display the game info for each -->
-<table id="indexTable" class="container-fluid table table-striped table-inverse">
-    <thead>
-        <tr>
-            <th>
-                Title
-                <!-- Sort Decending By Title -->
-                <a class="fa fa-caret-down fa-lg" aria-hidden="true" href="/games/sort/<%= user %>/title"></a>
-                <!-- Sort Accending By Title -->
-                <a class="fa fa-caret-up fa-lg" aria-hidden="true" href="/games/sort/<%= user %>/titleAccending"></a>
-            </th>
-            <th>
-                Release Year
-                </a>
-                <!-- Sort Decending By Release Date -->
-                <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/date"></a>
-                <!-- Sort Accending By Release Date -->
-                <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/dateDecending"></a>
-            </th>
-            <th>
-                Date Added
-                </a>
-                <!-- Sort Decending By Date Added -->
-                <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/dateAdded"></a>
-                <!-- Sort Accending By Date Added -->
-                <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/dateAddedDecending"></a>
-            </th>
-            <th>
-                Platforms Owned On
-                </a>
-                <!-- Sort Decending By Platform -->
-                <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/platform"></a>
-                <!-- Sort Accending By Platform -->
-                <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/platformAccending"></a>
-            
-            </th>
-             <!-- If displaying currentUser's collection, display Delete Game category -->
-            <% if (currentUser) { %>
-                <% if (games.length > 0 && games[0].author.id.equals(currentUser._id)) { %>
-                    <th>Delete Game</th>
-                <% } %>
-            <% } %>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% games.forEach(function(game) { %>
-            <tr>
-                <td><strong><%= game.title %></strong></td>
-                <td><%= game.date %></td>
-                <!-- Use Moment framework to display date -->
-                <td><%= moment(game.dateAdded).format("MMMM Do YYYY, h:mm:ss a") %></td>
-                <td>
-                    <!-- Check if it's the last platform in the list -->
-                    <!-- If not, add a comma after the platform -->
-                    <% for (var i = 0; i < game.platforms.length; i++) { %>
-                        <% if (i !== (game.platforms.length - 1)) { %>
-                            <%= game.platforms[i] + "," %>
-                        <% } else { %> 
-                            <%= game.platforms[i] %>
-                            <!-- If displaying currentUser's collection, display edit button -->
-                            <% if (currentUser) { %>
-                                <% if (game.author.id.equals(currentUser._id)) { %>
-                                    <a class="btn btn-outline-secondary btn-sm" href="/games/<%= game._id %>/edit">Edit</a>
-                                <% } %>
-                            <% } %>
-                        <% } %> 
-                    <% }; %>
-                </td>
-                <td>
-                    <!-- If displaying currentUser's collection, display delete button -->
+<div class="container-fluid">
+    <div class="row no-gutters">
+        <table id="indexTable" class="table table-striped table-inverse table-responsive">
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                        <!-- Sort Decending By Title -->
+                        <a class="fa fa-caret-down fa-lg" aria-hidden="true" href="/games/sort/<%= user %>/title"></a>
+                        <!-- Sort Accending By Title -->
+                        <a class="fa fa-caret-up fa-lg" aria-hidden="true" href="/games/sort/<%= user %>/titleAccending"></a>
+                    </th>
+                    <th>
+                        Release Year
+                        </a>
+                        <!-- Sort Decending By Release Date -->
+                        <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/date"></a>
+                        <!-- Sort Accending By Release Date -->
+                        <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/dateDecending"></a>
+                    </th>
+                    <th>
+                        Date Added
+                        </a>
+                        <!-- Sort Decending By Date Added -->
+                        <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/dateAdded"></a>
+                        <!-- Sort Accending By Date Added -->
+                        <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/dateAddedDecending"></a>
+                    </th>
+                    <th>
+                        Platforms Owned On
+                        </a>
+                        <!-- Sort Decending By Platform -->
+                        <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/platform"></a>
+                        <!-- Sort Accending By Platform -->
+                        <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/platformAccending"></a>
+                    
+                    </th>
+                    <!-- If displaying currentUser's collection, display Delete Game category -->
                     <% if (currentUser) { %>
-                        <% if (games[0].author.id.equals(currentUser._id)) { %>
-                            <!-- If Delete is click, the Modal (below) is triggered -->
-                            <button class="btn btn-outline-danger btn-sm" type="button" data-toggle="modal" data-target="#exampleModal">Delete</button>
+                        <% if (games.length > 0 && games[0].author.id.equals(currentUser._id)) { %>
+                            <th>Delete Game</th>
                         <% } %>
                     <% } %>
-                </td>
+                </tr>
+            </thead>
 
-                <!-- Bootstrap Modal -->
-                <!-- When Delete is clicked, the modal is triggered with a pop-up to confirm delete -->
-                <!-- The form to submit to the DELETE route is nested below -->
-                <!-- Modal code copied from the Bootstrap documentation -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to delete this game?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Cancel</button>
-                                <!-- This is the form that submits to the DELETE Route -->
-                                <form id="deleteButton" action="/games/<%= game._id %>?_method=DELETE" method="POST">
-                                    <button class="btn btn-outline-danger btn-sm">Delete</button>
-                                </form>
+            <tbody>
+                <% games.forEach(function(game) { %>
+                    <tr>
+                        <td><strong><%= game.title %></strong></td>
+                        <td><%= game.date %></td>
+                        <!-- Use Moment framework to display date -->
+                        <td><%= moment(game.dateAdded).format("MMM Do 'YY") %></td>
+                        <td>
+                            <!-- Check if it's the last platform in the list -->
+                            <!-- If not, add a comma after the platform -->
+                            <% for (var i = 0; i < game.platforms.length; i++) { %>
+                                <% if (i !== (game.platforms.length - 1)) { %>
+                                    <%= game.platforms[i] + "," %>
+                                <% } else { %> 
+                                    <%= game.platforms[i] %>
+                                    <!-- If displaying currentUser's collection, display edit button -->
+                                    <% if (currentUser) { %>
+                                        <% if (game.author.id.equals(currentUser._id)) { %>
+                                            <a class="btn btn-outline-secondary btn-sm" href="/games/<%= game._id %>/edit">Edit</a>
+                                        <% } %>
+                                    <% } %>
+                                <% } %> 
+                            <% }; %>
+                        </td>
+                        <td>
+                            <!-- If displaying currentUser's collection, display delete button -->
+                            <% if (currentUser) { %>
+                                <% if (games[0].author.id.equals(currentUser._id)) { %>
+                                    <!-- If Delete is click, the Modal (below) is triggered -->
+                                    <button class="btn btn-outline-danger btn-sm" type="button" data-toggle="modal" data-target="#exampleModal">Delete</button>
+                                <% } %>
+                            <% } %>
+                        </td>
+
+                        <!-- Bootstrap Modal -->
+                        <!-- When Delete is clicked, the modal is triggered with a pop-up to confirm delete -->
+                        <!-- The form to submit to the DELETE route is nested below -->
+                        <!-- Modal code copied from the Bootstrap documentation -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this game?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Cancel</button>
+                                        <!-- This is the form that submits to the DELETE Route -->
+                                        <form id="deleteButton" action="/games/<%= game._id %>?_method=DELETE" method="POST">
+                                            <button class="btn btn-outline-danger btn-sm">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </tr>
-        <% }); %>
-    </tbody>
-</table>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 
 <!-- FIX LATER?? -->

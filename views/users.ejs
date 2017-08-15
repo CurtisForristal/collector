@@ -5,23 +5,27 @@
 <h1 class="display-3 standardHeader">ALL USERS</h1>
 
 <div id="allUsersTable" class="container">
-    <table class="container-fluid table table-striped table-inverse">
-        <thead>
-            <tr>
-                <th>User</th>
-                <th>Number of Games</th>
-            </tr>
-        </thead>
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-sm-12">
+            <table class="table table-striped table-inverse table-responsive">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Number of Games</th>
+                    </tr>
+                </thead>
 
-        <tbody>
-            <% users.forEach(function(user) { %>
-                <tr>
-                    <td><a class="user" href="/games/users/<%= user.username %>"><%= user.username %></a></td>
-                    <td><%= user.games.length %></td>
-                </tr>
-            <% }); %>  
-        </tbody>
-    </table>
+                <tbody>
+                    <% users.forEach(function(user) { %>
+                        <tr>
+                            <td><a class="user" href="/games/users/<%= user.username %>"><%= user.username %></a></td>
+                            <td><%= user.games.length %></td>
+                        </tr>
+                    <% }); %>  
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 
