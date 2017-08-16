@@ -46,35 +46,42 @@
                 <tr>
                     <th>
                         Title
-                        <!-- Sort Decending By Title -->
-                        <a class="fa fa-caret-down fa-lg" aria-hidden="true" href="/games/sort/<%= user %>/title"></a>
-                        <!-- Sort Accending By Title -->
-                        <a class="fa fa-caret-up fa-lg" aria-hidden="true" href="/games/sort/<%= user %>/titleAccending"></a>
+                        <span class="sortArrows">
+                            <!-- Sort Decending By Title -->
+                            <a class="fa fa-caret-down fa-lg" aria-hidden="true" href="/games/sort/<%= user %>/title"></a>
+                            <!-- Sort Accending By Title -->
+                            <a class="fa fa-caret-up fa-lg" aria-hidden="true" href="/games/sort/<%= user %>/titleAccending"></a>
+                        </span>
                     </th>
                     <th>
                         Release Year
+                        <span class="sortArrows">    
                         </a>
-                        <!-- Sort Decending By Release Date -->
-                        <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/date"></a>
-                        <!-- Sort Accending By Release Date -->
-                        <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/dateDecending"></a>
+                            <!-- Sort Decending By Release Date -->
+                            <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/date"></a>
+                            <!-- Sort Accending By Release Date -->
+                            <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/dateDecending"></a>
+                        </span>
                     </th>
                     <th>
                         Date Added
+                        <span class="sortArrows">    
                         </a>
-                        <!-- Sort Decending By Date Added -->
-                        <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/dateAdded"></a>
-                        <!-- Sort Accending By Date Added -->
-                        <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/dateAddedDecending"></a>
+                            <!-- Sort Decending By Date Added -->
+                            <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/dateAdded"></a>
+                            <!-- Sort Accending By Date Added -->
+                            <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/dateAddedDecending"></a>
+                        </span>
                     </th>
                     <th>
                         Platforms Owned On
-                        </a>
-                        <!-- Sort Decending By Platform -->
-                        <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/platform"></a>
-                        <!-- Sort Accending By Platform -->
-                        <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/platformAccending"></a>
-                    
+                        <span class="sortArrows">    
+                            </a>
+                            <!-- Sort Decending By Platform -->
+                            <a class="fa fa-caret-down fa-lg" href="/games/sort/<%= user %>/platform"></a>
+                            <!-- Sort Accending By Platform -->
+                            <a class="fa fa-caret-up fa-lg" href="/games/sort/<%= user %>/platformAccending"></a>
+                        </span>
                     </th>
                     <!-- If displaying currentUser's collection, display Delete Game category -->
                     <% if (currentUser) { %>

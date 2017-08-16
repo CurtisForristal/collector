@@ -81,6 +81,7 @@ body {
 /* Sort arrows on INDEX */
 .fa {
     color: gray;
+    margin-left: 2px;
 }
 
 
@@ -156,6 +157,18 @@ body {
     .formContainer {
         width: 60% !important;
     }
+
+    /* Word wrap on long usernames in All Users table */
+    #allUsersTable {
+        overflow-wrap: break-word;
+        word-break:break-word;
+    }
+
+    /* fix spacing on down Sort Arrows on INDEX byt dropping them down to a new line */
+    .sortArrows {
+        display: block;
+    }
+
 }
 
 
@@ -171,6 +184,12 @@ body {
     /* Form container on REGISTER and EDIT */
     .formContainer {
         width: 70% !important;
+    }
+
+    /* Word wrap on long usernames in All Users table */
+    #allUsersTable {
+        overflow-wrap: break-word;
+        word-break:break-word;
     }
 }
 
@@ -194,6 +213,12 @@ body {
     .formContainer {
         width: 80% !important;
     }
+
+    /* Word wrap on long usernames in All Users table */
+    #allUsersTable {
+        overflow-wrap: break-word;
+        word-break:break-word;
+    }
 }
 
 
@@ -215,5 +240,11 @@ body {
     /* Form container on REGISTER and EDIT */
     .formContainer {
         width: 100% !important;
+    }
+
+    /* Word wrap on long usernames in All Users table */
+    #allUsersTable {
+        overflow-wrap: break-word;
+        word-break:break-word;
     }
 }
