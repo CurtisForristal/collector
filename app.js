@@ -48,7 +48,7 @@ app.use(flash());
 // DATABASE SETUP
 // ==============
 mongoose.Promise = global.Promise
-mongoose.connect(process.env.DATABASEURL, {useMongoClient: true});
+mongoose.connect("mongodb://Curtis:PleaseWorkThisTimeSir@ds155811.mlab.com:55811/yelpcamp", {useMongoClient: true});
 
 
 // ==============
