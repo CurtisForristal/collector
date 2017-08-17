@@ -61,7 +61,7 @@ router.get("/login", function (req, res) {
 router.post("/login", passport.authenticate("local", {
     successRedirect: "/games",
     failureRedirect: "/login",
-    // Flash messages to display on success/fail of login
+    // Flash message displayed on login failure
     failureFlash: true,
 }), function (req, res) {
 });
@@ -227,7 +227,7 @@ router.post("/resetpassword/:token", function (req, res) {
 // USERS ROUTES
 // ============
 router.get("/users", function (req, res) {
-    // Sort by number of games; mongo stores the length of the games array as "__v"
+    // Sort by number of games; mongodb stores the length of the games array as "__v"
     User.find({}).sort({__v: -1}).exec(function (err, users) {
         if (err) {
             console.log("ERROR - USERS ROUTE");

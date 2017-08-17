@@ -7,7 +7,7 @@ var Game = require("../models/game");
 var middlewareObj = {};
 
 // Function: isLoggedIn
-// Check is a user is currently logged in
+// Check if a user is currently logged in
 middlewareObj.isLoggedIn = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();

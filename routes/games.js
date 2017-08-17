@@ -15,14 +15,14 @@ var User = require("../models/user");
 
 // CONSTANTS
 // ---------
-// My API Key is stored in environment variable GIANTBOMBAPIKEY
+// My GiantBomb.com API Key is stored in environment variable GIANTBOMBAPIKEY
 var key = process.env.GIANTBOMBAPIKEY;
 
 
 // GLOBAL VARIABLES
 // ----------------
 // By default, INDEX will sort the games by dateAdded before displaying the list
-// sortBy will be changed by the "Sort By" dropdown on the INDEX view
+// sortBy will be changed by the "Sort By" clicking the sort carets on the INDEX view
 var sortBy = "-dateAdded";
 
 
@@ -73,7 +73,7 @@ router.get("/games/users/:username", function (req, res) {
 });
 
 
-// INDEX/SORT/:SORTBY - Set the sort order, redirect back to games
+// INDEX/SORT/:SORTBY - Set the sort order, redirect back to /games/users
 router.get("/games/sort/:user/:sortBy", function (req, res) {
 	sortBy = req.params.sortBy;
 	// Decide if order needs to be flopped with a -
@@ -104,9 +104,8 @@ router.get("/games/results", middleware.isLoggedIn, function (req, res) {
 	// Create url from the giantbomb search query url, my API key, and the query variable
 	var url = "http://www.giantbomb.com/api/search/?api_key=" + key + "&format=json&query=" + query + "&resources=game";
 
-	// Make the API requst on Giant Bomb
-	// Using a Promise
-	// After the request completes, then runs the callback using the parsed data from makeApiRequest
+	// Make the API reqeust on Giant Bomb using a Promise
+	// After the request completes, "then" runs the callback using the parsed data from makeApiRequest
 	makeApiRequest(url).then(function(data) {
 		res.render("games/results", {data: data});
 	});
@@ -121,9 +120,8 @@ router.get("/results/:id", middleware.isLoggedIn, function (req, res) {
 	var resourceId = req.params.id;
 	var url = "http://www.giantbomb.com/api/game/" + resourceId + "/?api_key=" + key + "&format=json";
 
-	// Make the API requst on Giant Bomb
-	// Using a Promise
-	// After the request completes, then runs the callback using the parsed data from makeApiRequest
+	// Make the API requst on Giant Bomb using a Promise
+	// After the request completes, "then" runs the callback using the parsed data from makeApiRequest
 	makeApiRequest(url).then(function (data) {
 		res.render("games/resultsShow", {data: data, resourceId: resourceId});
 	});
@@ -132,7 +130,7 @@ router.get("/results/:id", middleware.isLoggedIn, function (req, res) {
 
 // CREATE
 // Receive the data from NEW
-// Add the new game to their list
+// Add the new game to the user's list
 // Redirect to INDEX
 router.post("/games", middleware.isLoggedIn, function (req, res) {
 	var title = req.body.title;
@@ -188,9 +186,9 @@ router.post("/games", middleware.isLoggedIn, function (req, res) {
 
 
 // EDIT
-// Receive the id from the edit button in the show view
+// Receive the id from the edit button in the INDEX view
 // Find the game entry for that id
-// Also, use the store resourceID to find the game on Giant Bomb, to add addition platforms on edit page
+// Also, use the stored resourceID to find the game on Giant Bomb to add additional platforms on edit page
 // Render the form to edit that entry
 router.get("/games/:id/edit", middleware.isLoggedIn, middleware.checkGameOwnership, function (req, res){
 	Game.findById(req.params.id, function (err, foundGame) {
@@ -209,9 +207,9 @@ router.get("/games/:id/edit", middleware.isLoggedIn, middleware.checkGameOwnersh
 
 
 // UPDATE
-// Receive the edited entry ovject from edit.ejs
+// Receive the edited entry object from edit.ejs
 // Find the original entry and update it
-// Redirect to that entry's show view
+// Redirect to the INDEX view
 router.put("/games/:id", middleware.isLoggedIn, middleware.checkGameOwnership, function (req, res) {
 	Game.findByIdAndUpdate(req.params.id, req.body, function (err, updatedGame) {
 		if (err) {
@@ -259,6 +257,7 @@ router.delete("/games/:id", middleware.isLoggedIn, middleware.checkGameOwnership
 
 // Function: makeApiRequest
 // Uses Request to send API requests to giantbomb.com
+// A Promise is used so the asynchronous process finishes before the next process begins 
 var makeApiRequest = function (url) {
 	// Return a promise
 	return new Promise(function(resolve, reject) {
@@ -287,7 +286,7 @@ var makeApiRequest = function (url) {
 
 
 // Function: sortGames
-// Sort all of the current user's games according to the drop-down before displaying the list
+// Sort all of the current user's games according to the sort carets before displaying the list
 var sortGames = function (userGames) {
 	switch (sortBy) {
 		case "title":

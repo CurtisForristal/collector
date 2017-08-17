@@ -1,10 +1,15 @@
+<!-- ================================================== -->
+<!-- VIEW: Index ====================================== -->
+<!-- Disaplys a table of a given user's game collection -->
+<!-- ================================================== -->
+
+
 <!-- INCLUDE HEADER -->
 <% include ../partials/header %>
 
+
 <!-- If a User is signed in and viewing their collection, -->
 <!-- then display the form to search for a game to add -->
-
-
 <% if (currentUser && currentUser.username === user) { %>
     <h1 class="display-3 standardHeader">My Collection</h1>
 
@@ -164,7 +169,7 @@
 
 
 <!-- FIX LATER?? -->
-<!-- FOR SOME REASON, the delete modal only works with bootstrap 4 alpha, not beta -->
+<!-- FOR SOME REASON, the delete modal only works with bootstrap 4 alpha, not the beta -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     
      

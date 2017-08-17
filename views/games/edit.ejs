@@ -1,7 +1,11 @@
+<!-- ============================================================ -->
+<!-- VIEW: Edit ================================================= -->
+<!-- Also the user to change which platforms they own the game on -->
+<!-- ============================================================ -->
+
+
 <!-- INCLUDE HEADER -->
 <% include ../partials/header %>
-
-
 
 
 <div class="container formContainer">
@@ -44,7 +48,7 @@
 
 
 <%# Use Jquery to check if a checkbox is selected. %>
-<%# If any boxes are selected, enable the submit button %>
+<%# Only if a boxes are selected will the submit button be enabled %>
 <script>
   var checkboxes = $("input[type='checkbox']"),
       submitButt = $("button[type='submit']");

@@ -13,6 +13,7 @@ var userSchema = new mongoose.Schema ({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Game"
     }],
+    // For password reset
     resetPasswordToken: String,
     resetPasswordExpires: Date
 });
