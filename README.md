@@ -1,7 +1,7 @@
 # Collector
 
 ### Site Link (Deployed with Heroku and mLab)
-
+https://pure-ocean-66872.herokuapp.com/
 
 ### Description
 A video game collection app...HOW ORIGINAL!  This web app will allow you to create a new account, add new games to your colleciton by searching GiantBomb.com's rebust game video datbase, select the platforms you own that game on, and display your collection for all the world to see.  You can also view a list of all registered users and view their collections as well.
