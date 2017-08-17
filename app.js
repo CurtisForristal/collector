@@ -48,7 +48,9 @@ app.use(flash());
 // DATABASE SETUP
 // ==============
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb://Curtis:PleaseWorkThisTime@ds149603.mlab.com:49603/collectorcf", {useMongoClient: true});
+mongoose.connect(process.env.DATABASEURL, {useMongoClient: true});
+
+
 
 // ==============
 // PASSPORT SETUP
