@@ -123,7 +123,7 @@ router.get("/results/:id", middleware.isLoggedIn, function (req, res) {
 	// Make the API requst on Giant Bomb using a Promise
 	// After the request completes, "then" runs the callback using the parsed data from makeApiRequest
 	makeApiRequest(url).then(function (data) {
-		res.render("games/resultsShow", {data: data, resourceId: resourceId});
+		res.render("games/resultsshow", {data: data, resourceId: resourceId});
 	});
 });
 
