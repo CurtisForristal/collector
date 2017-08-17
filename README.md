@@ -10,8 +10,8 @@ An incredibly unoriginal idea I know, but the exact content was beside the point
 
 * Node
 * Express
-* RESTful Routing
 * MongoDB and Mongoose
+* RESTful Routing
 * API usage
 * Authentication
 * Bootstrap and CSS3
