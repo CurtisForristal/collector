@@ -168,7 +168,6 @@ body {
     .sortArrows {
         display: block;
     }
-
 }
 
 
@@ -246,5 +245,10 @@ body {
     #allUsersTable {
         overflow-wrap: break-word;
         word-break:break-word;
+    }
+
+    /* At smallest size, put Search Game form on new line */
+    #gameSearch {
+        display: block;
     }
 }

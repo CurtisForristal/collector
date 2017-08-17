@@ -10,9 +10,11 @@
 
     <form id="addGame" action="/games/results" method="GET">
         <label >Add A Game To Your Collection</label>
-        <input type="text" name="search" placeholder="search">
-        <button id="searchButton" class="btn btn-outline-secondary">Search</button>
-    </form>
+        <span id="gameSearch">
+            <input type="text" name="search" placeholder="search">
+            <button id="searchButton" class="btn btn-outline-secondary">Search</button>
+        </form>
+    </span>
 <% } else { %>
     <div class="container">
         <div class="row justify-content-center">
