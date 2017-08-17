@@ -93,9 +93,17 @@ app.use(gamesRoutes);
 app.use(indexRoutes);
 
 
-// ==================
-// START LOCAL SERVER
-// ==================
-app.listen(27017, function() {
-	console.log("Server Started");
+// ======================
+// START LOCAL/DEV SERVER
+// ======================
+// app.listen(27017, function() {
+// 	console.log("Server Started");
+// });
+
+
+// ===============================
+// START SERVER HEROKU/PRODUCTION
+// ===============================
+app.listen(process.env.PORT, process.env.IP, function () {
+    console.log("Server Started");
 });
