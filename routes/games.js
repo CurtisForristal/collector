@@ -113,7 +113,7 @@ router.get("/games/results", middleware.isLoggedIn, function (req, res) {
 
 
 // RESULTS SHOW
-// Receive the game ID from the link in results.ejs
+// Receive the game ID from the git link in results.ejs
 // Find that game in the Giant Bomb database
 // Render a show page for that game with a link to add it to your collection
 router.get("/results/:id", middleware.isLoggedIn, function (req, res) {

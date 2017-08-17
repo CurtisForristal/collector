@@ -1,6 +1,6 @@
 # Collector
 
-### Site Link (Deployed with Heroku and mLab)
+### Site Link (deployed with Heroku and mLab)
 https://pure-ocean-66872.herokuapp.com/
 
 ### Description
@@ -21,6 +21,15 @@ An incredibly unoriginal idea I know, but the exact content was beside the point
 
 ### Installation
 Pretty straightforward.  Requires a local setup of Node, Express, and MondoDB.  Install the npm packages and bob's your uncle.
+
+### Usage 
+To run on a local setup, you will need to make these changes:
+* The site requires three environment variables which you will need to store locally:
+    * DATABASEURL - Used at app.js:51 - store as mongodb://localhost/collector
+    * GIANTBOMBAPIKEY - Used at games.js:19 - You will need to sign up for a giantbomb.com account to get your own API key
+    * GMAILPASSWORD - Used at index.js:127 and 204 - The email account (in the line just above) are used to email password reset links.  You will need to create your own gmail account and replace the stored email address and env variable with yours.
+* At the bottom of app.js, uncomment the START LOCAL/DEV SERVER lines and comment out the START SERVER HEROKU/PRODUCTION just below there.  This will allow for local/dev use.
+* You will also need to change you port in app.js:100 to whatever port your local setup of MongoDB is using
 
 ### Credits
 * Curtis Forristal
