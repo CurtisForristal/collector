@@ -1,7 +1,7 @@
 {
   "name": "collector",
   "version": "1.0.0",
-  "description": "video game collection database with Giant Bomb API",
+  "description": "A video game collection database with Giant Bomb API",
   "engines": {
     "node": "6.11.1"
   },
