@@ -25,7 +25,7 @@ Pretty straightforward.  Requires a local setup of Node, Express, and MondoDB.  
 ### Usage 
 To run on a local setup, you will need to make these changes:
 * The site requires three environment variables which you will need to store locally:
-    * DATABASEURL - Used at app.js:51 - store as mongodb://localhost/collector
+    * DATABASEURL - Used at app.js:64 - store as mongodb://localhost/collector
     * GIANTBOMBAPIKEY - Used at games.js:19 - You will need to sign up for a giantbomb.com account to get your own API key
     * GMAILPASSWORD - Used at index.js:127 and 204 - The email account (in the line just above) is used to email password reset links to the user.  You will need to create your own gmail account and replace the stored email address and env variable with yours.
 * At the top of app.js, set the "server" variable to 0 to select a LOCAL/DEV SERVER or 1 to select a HOSTED/PRODUCTION SERVER (using Heroku and mLab). 
