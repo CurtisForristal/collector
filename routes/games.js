@@ -91,7 +91,14 @@ router.get("/games/sort/:user/:sortBy", function (req, res) {
 			sortBy = "-platform";
 			break;
 	}
+	
+	// If user is viewing their own collection, redirect to /games
+	// This will keep the "My Collection" button in the toolbar active
+	if (req.user.username === req.params.user) {
+		res.redirect("/games");
+	} else {
 		res.redirect("/games/users/" + req.params.user);
+	}
 });
 
 

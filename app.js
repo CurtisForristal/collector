@@ -7,7 +7,7 @@
 
 // Set if you want to run the Local/Dev Server or the Hosted/Production server
 // Change the server variable to 0 for Local/Dev or 1 for Hosted/Production
-var server = 0;
+var server = 1;
 
 
 // ================
