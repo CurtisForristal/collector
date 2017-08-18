@@ -1,3 +1,15 @@
+// ==============================
+// COLLECTOR
+// =============================
+// App.js
+// Entry Point for Collector app
+// ==============================
+
+// Set if you want to run the Local/Dev Server or the Hosted/Production server
+// Change the server variable to 0 for Local/Dev or 1 for Hosted/Production
+var server = 0;
+
+
 // ================
 // REQUIRE PACKAGES
 // ================
@@ -94,17 +106,24 @@ app.use(gamesRoutes);
 app.use(indexRoutes);
 
 
-// ======================
-// START LOCAL/DEV SERVER
-// ======================
-// app.listen(27017, function() {
-// 	console.log("Server Started");
-// });
+// ============
+// START SERVER
+// ============
+// Starts the server
+// If the "server" variable is 0, app will run on a local/dev server
+// If the "server" variable is 1, app willrun on the hosted/production server using Heroku/mLab
+runServer();
+function runServer() {
+	var selectServer = "";
+	if (server === 0) {
+		selectServer = "27017";
+	}
+	if (server === 1) {
+		selectServer = "process.env.PORT, process.env.IP"
+	}
 
+	app.listen(selectServer, function() {
+		console.log("Server Started");
+	});
+}
 
-// ===============================
-// START SERVER HEROKU/PRODUCTION
-// ===============================
-app.listen(process.env.PORT, process.env.IP, function () {
-    console.log("Server Started");
-});

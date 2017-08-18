@@ -28,7 +28,7 @@ To run on a local setup, you will need to make these changes:
     * DATABASEURL - Used at app.js:51 - store as mongodb://localhost/collector
     * GIANTBOMBAPIKEY - Used at games.js:19 - You will need to sign up for a giantbomb.com account to get your own API key
     * GMAILPASSWORD - Used at index.js:127 and 204 - The email account (in the line just above) is used to email password reset links to the user.  You will need to create your own gmail account and replace the stored email address and env variable with yours.
-* At the bottom of app.js, uncomment the START LOCAL/DEV SERVER lines and comment out the START SERVER HEROKU/PRODUCTION just below there.  This will allow for local/dev use.
+* At the top of app.js, set the "server" variable to 0 to select a LOCAL/DEV SERVER or 1 to select a HOSTED/PRODUCTION SERVER (using Heroku and mLab). 
 * You will also need to change you port in app.js:100 to whatever port your local setup of MongoDB is using
 
 ### Credits
