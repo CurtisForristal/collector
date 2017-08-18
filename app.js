@@ -6,7 +6,8 @@
 // ==============================
 
 // Set if you want to run the Local/Dev Server or the Hosted/Production server
-// Change the server variable to 0 for Local/Dev or 1 for Hosted/Production
+// Change the server variable to 0 for Local/Dev (on port 27017) 
+// or 1 for Hosted/Production (using Heroku/mLab)
 var server = 1;
 
 
@@ -114,16 +115,15 @@ app.use(indexRoutes);
 // If the "server" variable is 1, app willrun on the hosted/production server using Heroku/mLab
 runServer();
 function runServer() {
-	var selectServer = "";
 	if (server === 0) {
-		selectServer = "27017";
+		app.listen(27017, function() {
+			console.log("Server Started");
+		});
 	}
 	if (server === 1) {
-		selectServer = "process.env.PORT, process.env.IP"
+		app.listen(process.env.PORT, process.env.IP, function() {
+			console.log("Server Started");
+		});
 	}
-
-	app.listen(selectServer, function() {
-		console.log("Server Started");
-	});
 }
 
