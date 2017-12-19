@@ -28,30 +28,28 @@
     <!-- Material Designs for the dpad background icon -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <body>
-    <!-- background icon -->
-    <i id="cross" class="material-icons">games</i>
 
 
+<div class="mainContent">
     <div class="container">
-        <div class="title">
+        <div class="row">
             <h1 class="display-1">COLLECTOR</h1>
         </div>
         
-        <div>
-            <!-- Display buttons based on whether a user is logged in or not -->
-            <% if (!currentUser) { %>
-                <div id="topRowButtons" class="btn-group" role="group">
-                    <a href="/login" class="btn btn-outline-secondary">Login</a>
-                    <a href="/register" class="btn btn-outline-secondary">Register</a>
-                    <a href="/users" class="btn btn-outline-secondary">View All Users</a>
-                </div>
-            <% } else { %>
-                <div class="btn-group" role="group">
-                    <a href="/games" class="btn btn-outline-secondary">My Collection</a>
-                    <a href="/users" class="btn btn-outline-secondary">View All Users</a>
-                </div>
-            <% } %>
-        </div>
+
+        <!-- Display buttons based on whether a user is logged in or not -->
+        <% if (!currentUser) { %>
+            <div id="topRowButtons" class="btn-group" role="group">
+                <a href="/login" class="btn btn-outline-secondary">Login</a>
+                <a href="/register" class="btn btn-outline-secondary">Register</a>
+                <a href="/users" class="btn btn-outline-secondary">View All Users</a>
+            </div>
+        <% } else { %>
+            <div class="btn-group" role="group">
+                <a href="/games" class="btn btn-outline-secondary">My Collection</a>
+                <a href="/users" class="btn btn-outline-secondary">View All Users</a>
+            </div>
+        <% } %>
 
         <div>
             <!-- Link to GitHub repo -->
@@ -61,7 +59,7 @@
             </a>
         </div>
     </div>
-
+</div>
 
 
 </body>
